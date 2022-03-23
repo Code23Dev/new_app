@@ -10,6 +10,10 @@ export default function faq() {
             <NavbarForAllPage/>
             <MobileMenu/>
             <MainForFaq/>
+
+
+
+
             <Footer/>
         </div>
     )
