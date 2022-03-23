@@ -109,9 +109,10 @@ const logout = () =>{
     useEffect(() => {
         storeOrders(localStorage.getItem("userId"))
             .then(items => {
-                if (items.data.product_version){
-                    console.log(items.data.product_version,"ddd")
-                    storeOrdersData(items.data.product_version)
+                console.log(items.data,"drrrrrrrrrrrrrrrrrrrrrd")
+                if (items.product_version){
+                    console.log(items.product_version,"ddd")
+                    storeOrdersData(items.product_version)
                 }
 
 
