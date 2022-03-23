@@ -245,6 +245,7 @@ export default function MainForVendor() {
 
     const [minPrice, setMinPrice] = useState([]);
     const [maxPrice, setMaxPrice] = useState([]);
+    const [searchVendor, searchVendorTitle] = useState([]);
     const sentPrice = (e) => {
         price.push(e)
         let data = {'price': price}
@@ -290,6 +291,7 @@ export default function MainForVendor() {
                 vendorsData(items.data.results)
             })
     }
+
     return (
         <>
             <div className="page-wrapper">
@@ -315,7 +317,8 @@ export default function MainForVendor() {
                                                 <div className="widget-body">
                                                     <form action="#" method="GET"
                                                           className="input-wrapper input-wrapper-inline">
-                                                        <input type="text" className="form-control" placeholder="Search ..."
+                                                        <input type="text" className="form-control" placeholder="Axtar ..."
+                                                               onChange={e=>searchVendorTitle(e.target.value)}
                                                                autoComplete="off" required=""/>
                                                         <button className="btn btn-search"><i className="w-icon-search"></i></button>
                                                     </form>
@@ -391,10 +394,10 @@ export default function MainForVendor() {
                                         <div className="toolbox-left">
                                             <form className="select-box toolbox-item">
                                                 <select name="orderby" className="form-control" onClick={(e)=> setPartnersPost(e.target.value)}>
-                                                    <option value="low-high">Orta reytinqə görə çeşidləyin: aşağıdan yuxarıya</option>
-                                                    <option value="high-low">Orta reytinqə görə çeşidləyin: yüksəkdən aşağıya</option>
-                                                    <option value="old-new">Əlifba sırası ilə sırala: A-dan Z-yə</option>
-                                                    <option value="old-new">Əlifba sırası ilə sıralayın: Z-dən A</option>
+                                                    <option value="low-high">reytinqə : aşağıdan yuxarıya</option>
+                                                    <option value="high-low">reytinqə : yuxarıdan aşağıya</option>
+                                                    <option value="old-new">əlifba sırası : A-dan Z-yə</option>
+                                                    <option value="old-new">əlifba sırası : Z-dən A</option>
                                                 </select>
                                             </form>
                                         </div>

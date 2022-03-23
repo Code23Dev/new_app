@@ -3,7 +3,9 @@ import axios from "axios";
 import {apiUrl} from "../apiUrl/apiUrl";
 
 export function productById(productId) {
-    const productByIdURL = `${apiUrl()}products/`
-    return   axios.get(`${productByIdURL + productId}`).then((response) => response);
-
+    console.log(productId)
+    const userProductsURL =`${apiUrl()}products/`
+    let  token = localStorage.getItem('username')
+    return  axios.get(`${userProductsURL+ productId}`, { 'headers': { 'Authorization': `Bearer ${token}` } }
+    ).then((response) => response);
 }

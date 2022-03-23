@@ -1098,7 +1098,7 @@ $.extend($.easing, {
                                             imageSrc: a.find(".product-media img, .product-image:first-child img").attr("src"),
                                             imageLink: a.find(".product-name > a").attr("href"),
                                             message: '<p>səbətə əlavə edildi:</p>',
-                                            actionTemplate: '<a href="/cart" class="btn btn-rounded btn-sm">Səbətə Baxın</a><a href="/checkout" class="btn btn-dark btn-rounded btn-sm">Yoxla</a>'
+                                            actionTemplate: '<a href="/card" class="btn btn-rounded btn-sm">Səbətə Baxın</a><a href="/checkout" class="btn btn-dark btn-rounded btn-sm">Yoxla</a>'
 
                                         });
                                 }, 500));

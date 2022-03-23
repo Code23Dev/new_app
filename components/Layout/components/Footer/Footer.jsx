@@ -4,6 +4,7 @@ import {subCategories} from "../../../../services/subCategories";
 import {phoneNumber} from "../../../../services/phoneNumber";
 import {logo} from "../../../../services/logo";
 import {urlTopForImg} from "../../../../services/apiUrl/urlTopForImg";
+import {subscribers} from "../../../../services/subscribers";
 
 export default function Footer(){
     const [categorieTitle, categorieData] = useState([]);
@@ -30,6 +31,19 @@ export default function Footer(){
                 }
             })
     }, [])
+
+    const [subscriberTitle, subscriberData] = useState(null);
+    const setSubscribersEmail = (email) =>{
+        subscriberData(email)
+    }
+    const clickButtonSubscribersEmail = () =>{
+        subscribers({email:subscriberTitle}).then(e=>{
+            console.log(e)
+        }).catch((e)=>{
+            console.log(e)
+        })
+    }
+
     return (
         <div>
             <style jsx>{`
@@ -71,9 +85,9 @@ export default function Footer(){
                             <div className="col-xl-7 col-lg-6 col-md-9 mt-4 mt-lg-0 ">
                                 <form action="#" method="get"
                                       className="input-wrapper input-wrapper-inline input-wrapper-rounded">
-                                    <input type="email" className="form-control mr-2 bg-white pl-3" name="email" id="email"
+                                    <input type="email" onChange={(e)=>setSubscribersEmail(e.target.value)} className="form-control mr-2 bg-white pl-3" name="email" id="email"
                                            placeholder="E-poçt ünvanınız" required/>
-                                    <button className="btn btn-primary btn-rounded" type="submit">Abunə ol
+                                    <button className="btn btn-primary btn-rounded" onClick={()=>{clickButtonSubscribersEmail()}} type="button">Abunə ol
                                         <i className="w-icon-long-arrow-right"></i>
                                     </button>
                                 </form>

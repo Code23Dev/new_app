@@ -53,26 +53,32 @@ export default function HeaderForAllPage(){
     const [showMeNumber, setShowMeNumber] = useState("none");
     const [logoTitle, logoData] = useState(null);
     const [headerTextTitle, setHeaderText] = useState(null);
-    let handleChange = (selectedOptions) => {
-        console.log(selectedOptions)
-    }
+
+    const [hiddenText, setHiddenText] = useState(null);
+
     const handleLoginInput = () =>{
         let data = {number:loginPhoneInput,
             password:passwordLogin}
         login(data)
             .then(items => {
-                console.log(items)
                 localStorage.setItem('username', items.data.access);
                 localStorage.setItem('token', items.data.refresh)
                 setLoginPost(items.data)
                 getUserDataByToken()
                     .then(e=>{
-                        console.log(e)
-                        localStorage.setItem('userId', e.data.id);
+                        if (e){
+                            setHiddenText("none")
+                            setShowMe("none")
+                            localStorage.setItem('userData',  JSON.stringify(e.data))
+                            localStorage.setItem('userId', e.data.id);
+                        }else {
+                            setHiddenText("")
+                            localStorage.setItem('userData',  JSON.stringify(e.data))
+                            localStorage.setItem('userId', e.data.id);
+                        }
                     })
             })
             .catch(e=>console.log(e))
-        console.log(data)
     }
 
     useEffect(() => {
@@ -169,6 +175,23 @@ export default function HeaderForAllPage(){
             })
 
     };
+
+
+    // search func
+    const [selectData, setSelectData] = useState("");
+    const [searchData, setSearchData] = useState("");
+    let handleChange = (selectedOptions) => {
+        setSelectData(selectedOptions.label)
+    }
+    const mainSearch = () =>{
+        let data ={
+            title:searchData,
+            category:selectData
+        }
+        productFilter(data).then(e=>{
+            console.log(e)
+        })
+    }
     return (
         <>
             <style jsx>{`
@@ -280,10 +303,10 @@ export default function HeaderForAllPage(){
                                 <span className="divider d-lg-show"></span>
                                 <a href="/contact-us" style={{color:"white", cursor:"pointer"}} className="d-lg-show" >Bizimlə Əlaqə</a>
                                 <a href="/my-account-for-user" style={{color:"white", cursor:"pointer"}} className="d-lg-show">Hesabım</a>
-                                <a onClick={showMeFunc} style={{color:"white", cursor:"pointer"}}>
+                                <a onClick={showMeFunc} style={{color:"white", cursor:"pointer",display:hiddenText}}>
                                     <i className="w-icon-account"></i>Daxil ol</a>
-                                <span className="delimiter d-lg-show">/</span>
-                                <a  onClick={showMeFunc} className="delimiter" style={{color:"white", cursor:"pointer"}}>Qeydiyyat</a>
+                                <span className="delimiter d-lg-show" style={{display:hiddenText}}>/</span>
+                                <a  onClick={showMeFunc} className="delimiter" style={{color:"white", cursor:"pointer",display:hiddenText}}>Qeydiyyat</a>
                             </div>
                         </div>
                     </div>
@@ -457,9 +480,9 @@ export default function HeaderForAllPage(){
                                             onChange={handleChange}
                                         />
                                     </div>
-                                    <input type="text" className="form-control bg-white" name="search" id="search"
+                                    <input type="text" className="form-control bg-white" name="search" id="search" onChange={e=>setSearchData(e.target.value)}
                                            placeholder="Axtarın..." required/>
-                                    <button className="btn btn-search" type="submit"><i className="w-icon-search"></i>
+                                    <button className="btn btn-search" type="button" onClick={()=>mainSearch()}><i className="w-icon-search"></i>
                                     </button>
                                 </form>
                             </div>
@@ -524,7 +547,7 @@ export default function HeaderForAllPage(){
                                         </div>
 
                                         <div className="cart-action">
-                                            <a href="/cart" className="btn btn-dark btn-outline btn-rounded">SƏBƏBƏTƏ BAXIN</a>
+                                            <a href="/card" className="btn btn-dark btn-outline btn-rounded">SƏBƏBƏTƏ BAXIN</a>
                                             <a href="/checkout" className="btn btn-primary  btn-rounded">Yoxla</a>
                                         </div>
                                     </div>
@@ -619,7 +642,7 @@ export default function HeaderForAllPage(){
                                 </div>
                                 <div className="header-right">
                                     <a href="/more-products" className="d-xl-show" style={{color:'red'}}>Endirimli Məhsullar</a>
-                                    <a href="#" className="d-xl-show"><i className="w-icon-map-marker mr-1"></i>Sifarişi izlə</a>
+                                    <a href="/order" className="d-xl-show"><i className="w-icon-map-marker mr-1"></i>Sifarişi izlə</a>
                                 </div>
                             </div>
                         </div>

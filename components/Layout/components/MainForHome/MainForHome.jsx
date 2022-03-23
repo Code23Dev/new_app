@@ -8,6 +8,8 @@ import {getUserDataByToken} from "../../../../services/auth/getUserDataByToken";
 import {addToWishlist} from "../../../../services/wishlist/AddToWishlist";
 import {addToCard} from "../../../../services/card/addToCard";
 import {allDiscount} from "../../../../services/discount/allDiscount";
+import {productFilter} from "../../../../services/productFilter";
+import {subscribers} from "../../../../services/subscribers";
 
 export default function MainForHome(){
     const [optionsTitle, optionsData] = useState([]);
@@ -50,12 +52,11 @@ export default function MainForHome(){
 
     const [allProductsTitle, allProductsData] = useState([]);
     useEffect(() => {
-        allProducts()
+        productFilter({})
             .then(items => {
                 allProductsData(items.data.results)
             })
     }, [])
-//
     const [data2, setData2] = useState([]);
     useEffect(() => {
         if(JSON.parse(localStorage.getItem('data2'))){
@@ -69,7 +70,6 @@ export default function MainForHome(){
                 })
         }
     }, [])
-    //
     const [partnersTitle, partnersData] = useState([]);
     useEffect(() => {
         if(JSON.parse(localStorage.getItem('partnersTitle'))){

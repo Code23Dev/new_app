@@ -59,50 +59,27 @@ export default function MobileMenu(){
                                 </ul>
                         </div>
                             <div className="tab-pane" id="categories">
-                                <ul className="mobile-menu">
-                                    <li>
-                                        <a href="shop-fullwidth-banner.html">
-                                            <i className="w-icon-tshirt2"></i>Fashion
-                                        </a>
-                                        <ul>
+                                    <ul className="mobile-menu">
+                                        {mobileCategoryData.map(e=>(
                                             <li>
-                                                <a href="#">Women</a>
+                                                <a href="javascript:void(0)">
+                                                    <i className="w-icon-tshirt2"></i> {e.title}
+                                                </a>
                                                 <ul>
-                                                    <li><a href="shop-fullwidth-banner.html">New Arrivals</a>
-                                                    </li>
-                                                    <li><a href="shop-fullwidth-banner.html">Best Sellers</a>
-                                                    </li>
-                                                    <li><a href="shop-fullwidth-banner.html">Trending</a></li>
-                                                    <li><a href="shop-fullwidth-banner.html">Clothing</a></li>
-                                                    <li><a href="shop-fullwidth-banner.html">Shoes</a></li>
-                                                    <li><a href="shop-fullwidth-banner.html">Bags</a></li>
-                                                    <li><a href="shop-fullwidth-banner.html">Accessories</a>
-                                                    </li>
-                                                    <li><a href="shop-fullwidth-banner.html">Jewlery &
-                                                        Watches</a></li>
-
+                                                    {e.sub_categories.map(s=>(
+                                                        <li>
+                                                            <a  href="javascript:void(0)">{s.title}</a>
+                                                            <ul>
+                                                                {s.sub_sub_categories.map(c=>(
+                                                                    <li><a href={`/shop/${e.id}`}>{c.title}</a></li>
+                                                                ))}
+                                                            </ul>
+                                                        </li>
+                                                    ))}
                                                 </ul>
                                             </li>
-                                            <li>
-                                                <a href="#">Men</a>
-                                                <ul>
-                                                    <li><a href="shop-fullwidth-banner.html">New Arrivals</a>
-                                                    </li>
-                                                    <li><a href="shop-fullwidth-banner.html">Best Sellers</a>
-                                                    </li>
-                                                    <li><a href="shop-fullwidth-banner.html">Trending</a></li>
-                                                    <li><a href="shop-fullwidth-banner.html">Clothing</a></li>
-                                                    <li><a href="shop-fullwidth-banner.html">Shoes</a></li>
-                                                    <li><a href="shop-fullwidth-banner.html">Bags</a></li>
-                                                    <li><a href="shop-fullwidth-banner.html">Accessories</a>
-                                                    </li>
-                                                    <li><a href="shop-fullwidth-banner.html">Jewlery &
-                                                        Watches</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
+                                        ))}
+                                    </ul>
                             </div>
                     </div>
                 </div>

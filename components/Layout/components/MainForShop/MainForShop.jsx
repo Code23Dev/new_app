@@ -11,6 +11,7 @@ import {productsPost} from "../../../../services/productsPost";
 import {productById} from "../../../../services/products/productById";
 import {categoryBanner} from "../../../../services/categoryBanner";
 import parse from "html-react-parser";
+import {filterPrices} from "../../../../services/filterPrices";
 
 export default function MainForShop(){
     const [optionsTitle, optionsData] = useState([]);
@@ -96,7 +97,14 @@ export default function MainForShop(){
                 setCategoryBanner([items.data])
             })
     }, [])
-    console.log(categoryBannerData)
+    const [filterPricesData, setFilterPrices] = useState([]);
+    useEffect(() => {
+        filterPrices()
+            .then(items => {
+                console.log(items.data)
+                setFilterPrices([...items.data])
+            })
+    }, [])
 
 
     const [showMe, setShowMe] = useState(true);
@@ -444,10 +452,7 @@ export default function MainForShop(){
                                                 <h3 className="widget-title"><span>Qiymət</span></h3>
                                                 <div className="widget-body">
                                                     <ul className="filter-items search-ul">
-                                                        <li><a href="javascript:void(0)" onClick={() =>sentPrice([0, 5])}>₼0.00 - ₼5.00</a></li>
-                                                        <li><a href="javascript:void(0)" onClick={() =>sentPrice([5, 10])}>₼5.00 - ₼10.00</a></li>
-                                                        <li><a href="javascript:void(0)" onClick={() =>sentPrice([15, 20])}>₼15.00 - ₼20.00</a></li>
-                                                        <li><a href="javascript:void(0)" onClick={() =>sentPrice([20, 100000])}>₼20.00+</a></li>
+                                                        {filterPricesData.map(e=>(<li><a href="javascript:void(0)" onClick={() =>sentPrice([e[0], e[1]])}>₼{e[0]} - ₼{e[1]}</a></li>))}
                                                     </ul>
                                                     <form className="price-range">
                                                         <input type="number" name="min_price" onChange={e=>setMinPrice(e.target.value)}  className="min_price text-center" placeholder="₼min"/>

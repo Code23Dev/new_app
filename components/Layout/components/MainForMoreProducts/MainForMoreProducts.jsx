@@ -1,12 +1,19 @@
 import React, {useEffect, useState} from 'react'
 import {allDiscount} from "../../../../services/discount/allDiscount";
 import Select from "react-select";
-import {allCategories} from "../../../../services/allCategories";
+import {allSubSubCategories} from "../../../../services/allSubSubCategories";
+import {discountFilter} from "../../../../services/discount/discountFilter";
 export default function MainForMoreProducts(){
     const [allDiscountTitle, allDiscountData] = useState([]);
     const [quickViewTitle, quickViewData] = useState(null);
+    function handleChange(data){
+        discountFilter({title:data.label})
+            .then(items => {
+                allDiscountData(items.data.results)
+            })
+    }
     useEffect(() => {
-        allDiscount()
+        discountFilter({})
             .then(items => {
                 allDiscountData(items.data.results)
             })
@@ -16,7 +23,7 @@ export default function MainForMoreProducts(){
     useEffect(() => {
         let mounted = true;
         let options = []
-        allCategories()
+        allSubSubCategories()
             .then(items => {
                 if(mounted) {
                     const data = items.data.map(e=>{
@@ -30,9 +37,7 @@ export default function MainForMoreProducts(){
     function quickViewFunc(id){
         quickViewData(allDiscountTitle.find(r=>r.product == id ? r : []))
     }
-    function handleChange(id){
-        console.log(id)
-    }
+
     return (
         <div>
             <style jsx>{`
