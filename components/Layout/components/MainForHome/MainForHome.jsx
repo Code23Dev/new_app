@@ -187,7 +187,7 @@ export default function MainForHome(){
                 <main className="main">
                     <div className="container pb-2">
                         <div className="intro-wrapper mt-4">
-                            <div className="swiper-container swiper-theme pg-inner animation-slider row cols-1 gutter-no"
+                            <div style={{zIndex:"-1"}} className="swiper-container swiper-theme pg-inner animation-slider row cols-1 gutter-no"
                                  data-swiper-options="{
                         'autoplay': {
                             'delay': 8000,
@@ -224,7 +224,7 @@ export default function MainForHome(){
                     </div>
                     <div className="container mb-10 pb-2">
                         <div className="swiper-container swiper-theme icon-box-wrapper appear-animate br-sm bg-white"
-                             style={{padding:'11px'}}
+                             style={{padding:'11px',zIndex:"-1"}}
                              data-swiper-options="{
                     'loop': true,
                     'slidesPerView': 1,
