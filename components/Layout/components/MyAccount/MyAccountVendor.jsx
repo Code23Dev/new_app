@@ -111,7 +111,7 @@ export default function MyAccountVendor(){
                                 <nav className="breadcrumb-nav">
                                     <div className="container">
                                         <ul className="breadcrumb">
-                                            <li><a href="/home">Ana Səhifə</a></li>
+                                            <li><a href="/">Ana Səhifə</a></li>
                                             <li>Satıcı üçün hesab</li>
                                         </ul>
                                     </div>

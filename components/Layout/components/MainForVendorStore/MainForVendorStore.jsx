@@ -295,7 +295,7 @@ export default function MainForVendorStore(){
                         </style>
                         <div className="container">
                             <ul className="breadcrumb bb-no">
-                                <li><a href="/home">Ana Səhifə</a></li>
+                                <li><a href="/">Ana Səhifə</a></li>
                                 <li><a href="#">Satıcılar</a></li>
                                 <li>Mağaza</li>
                             </ul>

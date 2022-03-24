@@ -352,7 +352,7 @@ export default function MainForShop(){
                         </style>
                         <div className="container">
                             <ul className="breadcrumb bb-no">
-                                <li><a href="/home">Ana Səhifə</a></li>
+                                <li><a href="/">Ana Səhifə</a></li>
                                 <li><a href="#">Mağaza</a></li>
                             </ul>
                         </div>
@@ -390,7 +390,7 @@ export default function MainForShop(){
                                                                     type="checkbox"
                                                                     value={item.id}
                                                                     style={{width:' 20px', height: '24px'}}
-                                                                    checked={ urlCategoriaId==item.id ? true :item.isChecked}
+                                                                    checked={ urlCategoriaId === item.id ? true : item.isChecked}
                                                                     id={`options` + item.id}
                                                                 />
                                                                 <label htmlFor={`options` + item.id} className="ml-2" style={{position:"relative", top:'-5px',cursor:"pointer"}}>{item.title}</label>
@@ -403,17 +403,17 @@ export default function MainForShop(){
                                             <div className="widget widget-collapsible">
                                                 <h3 className="widget-title"><span>Alt Kateqoriyalar</span></h3>
                                                 <ul className="widget-body filter-items item-check mt-1">
-                                                    {subCategoriesTitle.map((item, index) => (
-                                                        <div  onChange={(e) => handleChangeSubCategories(e,item.id,item.title)}>
+                                                    {subCategoriesTitle?.map((item, index) => (
+                                                        <div  onChange={(e) => handleChangeSubCategories(e,item?.id,item?.title)}>
                                                             <div key={item.id} className="mt-2">
                                                                 <input
                                                                     type="checkbox"
-                                                                    value={item.id}
+                                                                    value={item?.id}
                                                                     style={{width:' 20px', height: '24px'}}
-                                                                    checked={urlSubCategoriaId==item.id ? true : item.isChecked}
-                                                                    id={`sub` + item.id}
+                                                                    checked={urlSubCategoriaId === item?.id ? true : item?.isChecked}
+                                                                    id={`sub` + item?.id}
                                                                 />
-                                                                <label htmlFor={`sub` + item.id} className="ml-2" style={{position:"relative", top:'-5px',cursor:"pointer"}}>{item.title}</label>
+                                                                <label htmlFor={`sub` + item?.id} className="ml-2" style={{position:"relative", top:'-5px',cursor:"pointer"}}>{item.title}</label>
                                                                 <br />
                                                             </div>
                                                         </div>
@@ -423,26 +423,26 @@ export default function MainForShop(){
                                             <div className="widget widget-collapsible">
                                                 <h3 className="widget-title"><span>Sub Kateqoriyalar</span></h3>
                                                 <ul className="widget-body filter-items item-check mt-1">
-                                                    {subSubCategoriesTitle.map((item, index) => (
-                                                        <div  onChange={(e) => handleChangeSubSubCategories(e,item.id,item.title)}>
-                                                            <div key={item.id} className="mt-2">
+                                                    {subSubCategoriesTitle?.map((item, index) => (
+                                                        <div  onChange={(e) => handleChangeSubSubCategories(e,item?.id,item?.title)}>
+                                                            <div key={item?.id} className="mt-2">
                                                                 <input
                                                                     type="checkbox"
                                                                     value={urlSubSubCategoriaId ? urlSubSubCategoriaId : item.id}
                                                                     style={{width:' 20px', height: '24px'}}
-                                                                    checked={urlSubSubCategoriaId==item.id ? true : item.isChecked}
-                                                                    id={`subSub` + item.id}
+                                                                    checked={urlSubSubCategoriaId===item?.id ? true : item?.isChecked}
+                                                                    id={`subSub` + item?.id}
                                                                 />
-                                                                <label htmlFor={`subSub` + item.id} className="ml-2" style={{position:"relative", top:'-5px',cursor:"pointer"}}>{item.title}</label>
+                                                                <label htmlFor={`subSub` + item?.id} className="ml-2" style={{position:"relative", top:'-5px',cursor:"pointer"}}>{item.title}</label>
                                                                 <br />
                                                             </div>
                                                         </div>
                                                     ))}
                                                 </ul>
                                             </div>
-                                            {filtersBySubsubTitle.map(e=>(
+                                            {filtersBySubsubTitle?.map(e=>(
                                                 <div className="widget widget-collapsible">
-                                                    <h3 className="widget-title"><span>{e.title}</span></h3>
+                                                    <h3 className="widget-title"><span>{e?.title}</span></h3>
                                                     <ul className="widget-body filter-items item-check mt-1">
 
                                                     </ul>
@@ -452,12 +452,12 @@ export default function MainForShop(){
                                                 <h3 className="widget-title"><span>Qiymət</span></h3>
                                                 <div className="widget-body">
                                                     <ul className="filter-items search-ul">
-                                                        {filterPricesData.map(e=>(<li><a href="javascript:void(0)" onClick={() =>sentPrice([e[0], e[1]])}>₼{e[0]} - ₼{e[1]}</a></li>))}
+                                                        {filterPricesData?.map(e=>(<li><a href="javascript:void(0)" onClick={() =>sentPrice([e[0], e[1]])}>₼{e[0]} - ₼{e[1]}</a></li>))}
                                                     </ul>
                                                     <form className="price-range">
-                                                        <input type="number" name="min_price" onChange={e=>setMinPrice(e.target.value)}  className="min_price text-center" placeholder="₼min"/>
+                                                        <input type="number" name="min_price" onChange={e=>setMinPrice(e?.target?.value)}  className="min_price text-center" placeholder="₼min"/>
                                                         <span className="delimiter">-</span>
-                                                        <input type="number" name="max_price" onChange={e=>setMaxPrice(e.target.value)}  className="max_price text-center" placeholder="₼max"/>
+                                                        <input type="number" name="max_price" onChange={e=>setMaxPrice(e?.target?.value)}  className="max_price text-center" placeholder="₼max"/>
                                                         <a href="javascript:void(0)" className="btn btn-primary btn-rounded" onClick={()=>setAllPriceData()}>Göndər</a>
                                                     </form>
                                                 </div>
@@ -473,7 +473,7 @@ export default function MainForShop(){
                                                 className="w-icon-category"></i><span>Filters</span></a>
                                             <div className="toolbox-item toolbox-sort select-box text-dark">
                                                 <label>Sırala :</label>
-                                                <select name="orderby" className="form-control"  onClick={(e)=> setPartnersPost(e.target.value)}>
+                                                <select name="orderby" className="form-control"  onClick={(e)=> setPartnersPost(e?.target?.value)}>
                                                     <option value="az">A-Z</option>
                                                     <option value="za">Z-A</option>
                                                     <option value="cheap">Ucuz-Baha</option>
@@ -483,7 +483,7 @@ export default function MainForShop(){
                                         </div>
                                         <div className="toolbox-right">
                                             <div className="toolbox-item toolbox-show select-box">
-                                                <select name="count" className="form-control" onClick={(e)=> setPageFunc(1,e.target.value)}>
+                                                <select name="count" className="form-control" onClick={(e)=> setPageFunc(1,e?.target?.value)}>
                                                     <option value="9">Show 9</option>
                                                     <option value="12" selected="selected">Show 12</option>
                                                     <option value="24">Show 24</option>
@@ -505,12 +505,12 @@ export default function MainForShop(){
                                     </nav>
 
                                     <div className="product-wrapper row cols-lg-4 cols-md-3 cols-sm-2 cols-2" style={{display: showMe?" ":"none"}}>
-                                        {allProductsTitle.map(e=>(
+                                        {allProductsTitle?.map(e=>(
                                             <div className="product-wrap">
                                                 <div className="product text-center">
                                                     <figure className="product-media">
-                                                        <a href={`/${e.id}`}>
-                                                            <img src={e.images[0]} alt="Product" width="300"
+                                                        <a href={`/${e?.id}`}>
+                                                            <img src={e?.images[0]} alt="Product" width="300"
                                                                  height="338"/>
                                                         </a>
                                                         <div className="product-action-horizontal">
@@ -521,7 +521,7 @@ export default function MainForShop(){
                                                             <a href="#" className="btn-product-icon btn-compare w-icon-compare"
                                                                title="Compare"></a>
                                                             <a href="#" className="btn-product-icon btn-quickview w-icon-search"
-                                                               onClick={()=>{setProductByIdFunc(e.id)}}
+                                                               onClick={()=>{setProductByIdFunc(e?.id)}}
                                                                title="Quick View"
                                                             ></a>
                                                         </div>
@@ -531,19 +531,19 @@ export default function MainForShop(){
                                                             <a href="shop-banner-sidebar.html">sub_sub_category</a>
                                                         </div>
                                                         <h3 className="product-name">
-                                                            <a href="product-default.html">{e.title}</a>
+                                                            <a href="product-default.html">{e?.title}</a>
                                                         </h3>
                                                         <div className="ratings-container">
                                                             <div className="ratings-full">
-                                                                <span className="ratings"  style={{width: `${(18 * e.rating)+'%'}` }}></span>
+                                                                <span className="ratings"  style={{width: `${(18 * e?.rating)+'%'}` }}></span>
                                                                 <span className="tooltiptext tooltip-top"></span>
                                                             </div>
-                                                            <a href="product-default.html" className="rating-reviews">({e.rating}
+                                                            <a href="product-default.html" className="rating-reviews">({e?.rating}
                                                                 reviews)</a>
                                                         </div>
                                                         <div className="product-pa-wrapper">
                                                             <div className="product-price">
-                                                                {e.price}
+                                                                {e?.price}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -554,11 +554,11 @@ export default function MainForShop(){
 
 
                                     <div className="product-wrapper row cols-xl-1 cols-sm-1 cols-xs-1 cols-1" style={{display: showMe?"none":" "}}>
-                                        {allProductsTitle.map(e=>(
+                                        {allProductsTitle?.map(e=>(
                                             <div className="product product-list">
                                                 <figure className="product-media">
                                                     <a href={`/${e.id}`}>
-                                                        <img src={e.images[0]} alt="Product" width="300"
+                                                        <img src={e?.images[0]} alt="Product" width="300"
                                                              height="338"/>
                                                     </a>
                                                     <div className="product-action-vertical">

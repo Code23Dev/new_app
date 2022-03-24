@@ -56,7 +56,7 @@ export default function MainForWishlist(){
                 <nav className="breadcrumb-nav mb-10">
                     <div className="container">
                         <ul className="breadcrumb">
-                            <li><a href="/home">Ana Səhifə</a></li>
+                            <li><a href="/">Ana Səhifə</a></li>
                             <li>Bəyəndiklərim</li>
                         </ul>
                     </div>

@@ -260,7 +260,7 @@ export default function MainForProduct() {
           <nav className="breadcrumb-nav container">
             <ul className="breadcrumb bb-no">
               <li>
-                <a href="/home">Ana Səhifə</a>
+                <a href="/">Ana Səhifə</a>
               </li>
               <li>Məhsullar</li>
             </ul>

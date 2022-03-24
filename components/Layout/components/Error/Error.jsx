@@ -7,7 +7,7 @@ export default function Error(){
                 <nav className="breadcrumb-nav">
                     <div className="container">
                         <ul className="breadcrumb bb-no">
-                            <li><a href="/home">Ana Səhifə</a></li>
+                            <li><a href="/">Ana Səhifə</a></li>
                             <li>Error 404</li>
                         </ul>
                     </div>

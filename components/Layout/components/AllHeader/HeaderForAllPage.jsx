@@ -620,7 +620,7 @@ export default function HeaderForAllPage(){
                                     <nav className="main-nav">
                                         <ul className="menu active-underline">
                                             <li>
-                                                <a href="/home">Ana səhifə</a>
+                                                <a href="/">Ana səhifə</a>
                                             </li>
                                             <li>
                                                 <a href="/shop">Mağaza</a>
@@ -642,7 +642,7 @@ export default function HeaderForAllPage(){
                                 </div>
                                 <div className="header-right">
                                     <a href="/more-products" className="d-xl-show" style={{color:'cd2027'}}>Endirimli Məhsullar</a>
-                                    <a href="/order" className="d-xl-show"><i className="w-icon-map-marker mr-1"></i>Sifarişi izlə</a>
+                                    {/* <a href="/order" className="d-xl-show"><i className="w-icon-map-marker mr-1"></i>Sifarişi izlə</a> */}
                                 </div>
                             </div>
                         </div>

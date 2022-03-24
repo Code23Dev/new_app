@@ -39,7 +39,7 @@ export default function MobileMenu(){
                         <div className="tab-pane active" id="main-menu">
                                 <ul className="mobile-menu">
                                     <li>
-                                        <a href="/home">Ana səhifə</a>
+                                        <a href="/">Ana səhifə</a>
                                     </li>
                                     <li>
                                         <a href="/shop">Mağaza</a>
