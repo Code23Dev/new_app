@@ -5,12 +5,12 @@ import Card from "../components/Layout/components/Card/Card";
 import Footer from "../components/Layout/components/Footer/Footer";
 
 export default function faq() {
-    return (
-        <div>
-            <NavbarForAllPage/>
-            <MobileMenu/>
-            <Card/>
-            <Footer/>
-        </div>
-    )
+  return (
+    <div>
+      <NavbarForAllPage />
+      <MobileMenu />
+      <Card />
+      <Footer />
+    </div>
+  );
 }

@@ -54,17 +54,17 @@ export default function Footer(){
             }
             .btn-primary:active, .btn-primary:focus, .btn-primary:hover {
                 color: #fff !important;
-                border-color: #f6624e !important;
-                background-color: #f6624e !important;
+                border-color: #cd2027 !important;
+                background-color: #cd2027 !important;
             }
             .btn-primary:active, .btn-primary:focus, .btn-primary{
                 color: #fff !important;
-                border-color: #f6624e !important;
-                background-color: #f6624e !important;
+                border-color: #cd2027 !important;
+                background-color: #cd2027 !important;
             }
             .footer-newsletter {
                 padding-bottom: 2.7rem;
-                background-color: #183544 !important;
+                background-color: #0b899b !important;
             }`}
             </style>
             <footer className="footer appear-animate" data-animation-options="{ 'name': 'fadeIn'}">

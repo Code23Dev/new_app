@@ -212,7 +212,7 @@ export default function HeaderForAllPage(){
                         outline: none;
                     }
                 .header-top {
-                    background: #0088dd;
+                    background: #0b899b;
                     font-size: 1.1rem;
                     letter-spacing: -0.027em;
                     text-transform: capitalize;
@@ -378,11 +378,11 @@ export default function HeaderForAllPage(){
                                                            required=""/>
                                                     <label htmlFor="remember">Mağaza</label>
                                                 </div>
-                                                <div className="col-md-4">
+                                                {/* <div className="col-md-4">
                                                     <input type="checkbox" className="custom-checkbox" id="remember3" onChange={e=>setIsVendor(e.target.checked)} name="remember"
                                                            required=""/>
                                                     <label htmlFor="remember">Satıcı</label>
-                                                </div>
+                                                </div> */}
                                                 <div className="col-md-4">
                                                     <input type="checkbox" className="custom-checkbox" id="remember4" name="remember" required=""/>
                                                     <label htmlFor="remember">İstifadəçilər</label>
@@ -438,11 +438,11 @@ export default function HeaderForAllPage(){
                                                        required=""/>
                                                 <label htmlFor="remember">Mağaza</label>
                                             </div>
-                                            <div className="form-checkbox d-flex align-items-center justify-content-between">
+                                            {/* <div className="form-checkbox d-flex align-items-center justify-content-between">
                                                 <input type="checkbox" className="custom-checkbox" id="remember3" onChange={e=>setIsVendor(e.target.checked)} name="remember"
                                                        required=""/>
                                                 <label htmlFor="remember">Satıcı</label>
-                                            </div>
+                                            </div> */}
                                             <a href="#" className="btn btn-primary" onClick={handleRegisterInput}>Qeydiyyatdan keç</a>
                                         </div>
                                     </div>
@@ -467,7 +467,8 @@ export default function HeaderForAllPage(){
                                 </a>
                                 <form method="get" action="#"
                                       className="input-wrapper header-search hs-expanded hs-round d-none d-md-flex">
-                                    <div className="select-box bg-white">
+                                    <div className="select-box bg-white" style={{zIndex:"9"}}>
+
                                         <Select
                                             name="colors"
                                             styles={style}
@@ -567,8 +568,8 @@ export default function HeaderForAllPage(){
                                             <i className="w-icon-category"></i>
                                             <span>BÜTÜN KATEQORİYALAR</span>
                                         </a>
-                                        <div className="dropdown-box">
-                                            <ul className="menu vertical-menu category-menu">
+                                        <div className="dropdown-box" >
+                                            <ul className="menu vertical-menu category-menu" style={{zIndex:"1"}}>
                                                 {logoPost.map(item => (
                                                     <li>
                                                         <a href="#">
@@ -584,7 +585,6 @@ export default function HeaderForAllPage(){
                                                                             </ul>
                                                                         </div>
                                                                     ))}
-
                                                                 </li>
                                                                 <li>
                                                                     <div className="menu-banner banner-fixed menu-banner4">
@@ -641,7 +641,7 @@ export default function HeaderForAllPage(){
                                     </nav>
                                 </div>
                                 <div className="header-right">
-                                    <a href="/more-products" className="d-xl-show" style={{color:'red'}}>Endirimli Məhsullar</a>
+                                    <a href="/more-products" className="d-xl-show" style={{color:'cd2027'}}>Endirimli Məhsullar</a>
                                     <a href="/order" className="d-xl-show"><i className="w-icon-map-marker mr-1"></i>Sifarişi izlə</a>
                                 </div>
                             </div>
