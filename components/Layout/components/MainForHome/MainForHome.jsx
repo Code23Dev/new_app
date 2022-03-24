@@ -9,7 +9,9 @@ import {addToWishlist} from "../../../../services/wishlist/AddToWishlist";
 import {addToCard} from "../../../../services/card/addToCard";
 import {allDiscount} from "../../../../services/discount/allDiscount";
 import {productFilter} from "../../../../services/productFilter";
-import {subscribers} from "../../../../services/subscribers";
+import {useDispatch, useSelector} from "react-redux";
+import {homeProductFilter,addToCardMain} from "../../../../store/actions";
+import {cartByUserID} from "../../../../services/card/cartByUserID";
 
 export default function MainForHome(){
     const [optionsTitle, optionsData] = useState([]);
@@ -85,7 +87,6 @@ export default function MainForHome(){
     }, [])
 
 
-
     const [showMe, setShowMe] = useState("none");
     const showMeFunc = () =>{
         if (showMe== 'none'){
@@ -147,16 +148,30 @@ export default function MainForHome(){
         }
 
     }
+    const dispatch = useDispatch();
     const addToCardFunc = (productId) =>{
         let data = {quantity:1, product:productId}
         addToCard(data)
             .then((e)=>{
+                cartByUserIDFunc()
                 console.log(e)
             })
             .catch((e)=>{
                 console.log(e)
             })
     }
+    const cartByUserIDFunc = () =>{
+        let  userId = localStorage.getItem('userId')
+        cartByUserID(userId)
+            .then((e)=>{
+                dispatch(addToCardMain(e.data.product_version))
+                console.log(e)
+            })
+            .catch((e)=>{
+                console.log(e)
+            })
+    }
+
 
 
     const [quickviewList, setQuickviewList] = useState([]);
@@ -181,8 +196,234 @@ export default function MainForHome(){
                 })
         }
     }, [])
+
+    const productHome = useSelector((state) => state.productHome);
     return (
         <>
+            <style jsx>{`
+              @media only screen and (min-width: 769px) {
+                .product-list {
+
+                  width:700px!important;
+                } }
+              .icon-box-wrapper {
+                border: 1px solid white;
+                padding: 0px;
+              }
+              .product-list {
+                padding: 0.8rem;
+                border: 1px solid #ed711b;
+              }
+
+              .btn-product:hover {
+                background-color: #ed711b !important;
+                color: #fff !important;
+                border-color: #ed711b !important;
+                letter-spacing: 0 !important;
+              }
+
+              .product-name a:hover {
+                color: #ed711b;
+              }
+
+              .ratings-full {
+                cursor: pointer;
+                margin-right: 0.5rem;
+              }
+
+              .ratings:before {
+                content: "" "" "" "" "";
+                color: #666;
+              }
+
+              .ratings, .ratings-full {
+                position: relative;
+                font-family: "wolmart";
+                letter-spacing: 0.2em;
+              }
+
+              .ratings {
+                position: absolute;
+                top: 0;
+                left: 0;
+                white-space: nowrap;
+                overflow: hidden;
+              }
+
+              .product:not(.product-single):hover .product-countdown-container {
+                opacity: 0;
+                visibility: hidden;
+              }
+
+              .product.product-list .product-countdown-container {
+                background-color: #444;
+              }
+
+              .product:not(.product-single) .product-countdown-container {
+                position: absolute;
+                left: 10px;
+                right: 10px;
+                bottom: 10px;
+                white-space: nowrap;
+                overflow-x: auto;
+                background-color: rgba(34, 34, 34, 0.8);
+                color: #fff;
+                letter-spacing: -0.025em;
+                text-align: center;
+                border-radius: 0.3rem;
+                padding-left: 0;
+                padding-right: 0;
+                opacity: 1;
+                visibility: visible;
+                transition: opacity 0.3s, visibility 0.3s;
+              }
+              .product-list {
+                padding: 0.8rem;
+                border: 1px solid #ed711b;
+              }
+
+              .btn-product:hover {
+                background-color: #ed711b !important;
+                color: #fff !important;
+                border-color: #ed711b !important;
+                letter-spacing: 0 !important;
+              }
+
+              .product-name a:hover {
+                color: #ed711b;
+              }
+
+              .ratings-full {
+                cursor: pointer;
+                margin-right: 0.5rem;
+              }
+
+              .ratings:before {
+                content: "" "" "" "" "";
+                color: #666;
+              }
+
+              .ratings, .ratings-full {
+                position: relative;
+                font-family: "wolmart";
+                letter-spacing: 0.2em;
+              }
+
+              .ratings {
+                position: absolute;
+                top: 0;
+                left: 0;
+                white-space: nowrap;
+                overflow: hidden;
+              }
+
+              .product:not(.product-single):hover .product-countdown-container {
+                opacity: 0;
+                visibility: hidden;
+              }
+
+              .product.product-list .product-countdown-container {
+                background-color: #444;
+              }
+
+              .product:not(.product-single) .product-countdown-container {
+                position: absolute;
+                left: 10px;
+                right: 10px;
+                bottom: 10px;
+                white-space: nowrap;
+                overflow-x: auto;
+                background-color: rgba(34, 34, 34, 0.8);
+                color: #fff;
+                letter-spacing: -0.025em;
+                text-align: center;
+                border-radius: 0.3rem;
+                padding-left: 0;
+                padding-right: 0;
+                opacity: 1;
+                visibility: visible;
+                transition: opacity 0.3s, visibility 0.3s;
+              }
+                    .react-tel-input .form-control {
+                        position: relative;
+                        font-size: 14px;
+                        letter-spacing: .01rem;
+                        margin-top: 0 !important;
+                        margin-bottom: 0 !important;
+                        padding-left: 48px;
+                        margin-left: 0;
+                        background: #FFFFFF;
+                        border: 1px solid #CACACA;
+                        border-radius: 5px;
+                        line-height: 25px;
+                        height: 35px;
+                        width: 100% !important;
+                        outline: none;
+                    }
+                .header-top {
+                    background: #0088dd;
+                    font-size: 1.1rem;
+                    letter-spacing: -0.027em;
+                    text-transform: capitalize;
+                    color: #fff;
+                    border-bottom: 1px solid;
+                    border-color: rgba(238, 238, 238, 0.2);
+                }
+                .header-middle {
+                    padding-top: 3.2rem;
+                    padding-bottom: 3.2rem;
+                    color: #fff;
+                    background: #0088dd;
+                    font-size: 1.2rem;
+                    border-bottom: 0;
+                }
+                .modal {
+                  display: block; 
+                  position: fixed; 
+                  z-index: 9999; 
+                  padding-top: 30px;
+                  left: 0;
+                  top: 0;
+                  min-width: 100%;
+                  height: 100%; 
+                  overflow: auto;
+                  background-color: rgb(0,0,0);
+                  background-color: rgba(0,0,0,0.4);
+                }
+                .modal-content {
+                  background-color: #fefefe;
+                  margin: auto;
+                  padding: 10px;
+                  border: 1px solid #888;
+                  width: 57%;
+                }
+
+                .close {
+                  color: #aaaaaa;
+                  float: right;
+                  font-size: 28px;
+                  font-weight: bold;
+                   padding-left: 20px;
+                }
+                
+                .close:hover,
+                .close:focus {
+                  color: #000;
+                  text-decoration: none;
+                  cursor: pointer;
+                  padding-left: 20px;
+                }
+                @media only screen and (max-width: 1000px) {
+                  .modal-content {
+                    background-color: #fefefe;
+                    margin: auto;
+                    padding: 10px;
+                    border: 1px solid #888;
+                    width: 85%;
+                  }
+                }
+            `}
+            </style>
             <div className="page-wrapper">
                 <main className="main">
                     <div className="container pb-2">
@@ -286,81 +527,81 @@ export default function MainForHome(){
                         </div>
 
                     </div>
-                    <div className="container mt-1 pt-2">
-                        <h2 className="title title-underline mb-4 appear-animate">Ən yeni Mağazalar</h2>
-                        <div className="swiper-container swiper-theme mb-10 pb-2 appear-animate" data-swiper-options="{
-                    'spaceBetween': 20,
-                    'slidesPerView': 1,
-                    'breakpoints': {
-                        '576': {
-                            'slidesPerView': 2
-                        },
-                        '768': {
-                            'slidesPerView': 3
-                        },
-                        '1200': {
-                            'slidesPerView': 4
-                        }
-                    }
-                }">
-                            <div className="swiper-wrapper row cols-lg-4 cols-md-3 cols-sm-2 cols-1">
-                                {data2.map(e=>(
-                                    <div className="swiper-slide vendor-widget mb-0">
-                                        <div className="vendor-widget-2">
-                                            <div className="vendor-details">
-                                                <figure className="vendor-logo">
-                                                    <a href={`shop/${e.id}`}>
-                                                        <img src={e.main_image} alt="Vendor Logo"
-                                                             style={{maxHeight:"50px"}}/>
-                                                    </a>
-                                                </figure>
-                                                <div className="vendor-personal">
-                                                    <h4 className="vendor-name">
-                                                        <a href={`shop/${e.id}`}>{e.title}</a>
-                                                    </h4>
-                                                    {/*<span className="vendor-product-count">(27 Products)</span>*/}
-                                                    <div className="ratings-container">
-                                                        <div className="ratings-full">
-                                                            <span className="ratings"  style={{width: `${(18 * e.rating)+'%'}` }}></span>
-                                                            <span className="tooltiptext tooltip-top"></span>
-                                                        </div>
-                                                    </div>
-                                                    <span className="vendor-product-count">category</span>
-                                                </div>
-                                            </div>
-                                            <div className="vendor-products row cols-3 gutter-sm">
-                                                <div className="vendor-product">
-                                                    <figure className="product-media">
-                                                        <a href={`shop/${e.id}`}>
-                                                            <img src={e.images[0]}
-                                                                 alt=" Product" width="100" height="113"/>
-                                                        </a>
-                                                    </figure>
-                                                </div>
-                                                <div className="vendor-product">
-                                                    <figure className="product-media">
-                                                        <a href={`shop/${e.id}`}>
-                                                            <img src={e.images[1]}
-                                                                 alt=" Product" width="100" height="113"/>
-                                                        </a>
-                                                    </figure>
-                                                </div>
-                                                <div className="vendor-product">
-                                                    <figure className="product-media">
-                                                        <a href={`shop/${e.id}`}>
-                                                            <img src={e.images[2]}
-                                                                 alt=" Product" width="100" height="113"/>
-                                                        </a>
-                                                    </figure>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                            <div className="swiper-pagination"></div>
-                        </div>
-                    </div>
+                {/*    <div className="container mt-1 pt-2">*/}
+                {/*        <h2 className="title title-underline mb-4 appear-animate">Ən yeni Mağazalar</h2>*/}
+                {/*        <div className="swiper-container swiper-theme mb-10 pb-2 appear-animate" data-swiper-options="{*/}
+                {/*    'spaceBetween': 20,*/}
+                {/*    'slidesPerView': 1,*/}
+                {/*    'breakpoints': {*/}
+                {/*        '576': {*/}
+                {/*            'slidesPerView': 2*/}
+                {/*        },*/}
+                {/*        '768': {*/}
+                {/*            'slidesPerView': 3*/}
+                {/*        },*/}
+                {/*        '1200': {*/}
+                {/*            'slidesPerView': 4*/}
+                {/*        }*/}
+                {/*    }*/}
+                {/*}">*/}
+                {/*            <div className="swiper-wrapper row cols-lg-4 cols-md-3 cols-sm-2 cols-1">*/}
+                {/*                {data2.map(e=>(*/}
+                {/*                    <div className="swiper-slide vendor-widget mb-0">*/}
+                {/*                        <div className="vendor-widget-2">*/}
+                {/*                            <div className="vendor-details">*/}
+                {/*                                <figure className="vendor-logo">*/}
+                {/*                                    <a href={`shop/${e.id}`}>*/}
+                {/*                                        <img src={e.main_image} alt="Vendor Logo"*/}
+                {/*                                             style={{maxHeight:"50px"}}/>*/}
+                {/*                                    </a>*/}
+                {/*                                </figure>*/}
+                {/*                                <div className="vendor-personal">*/}
+                {/*                                    <h4 className="vendor-name">*/}
+                {/*                                        <a href={`shop/${e.id}`}>{e.title}</a>*/}
+                {/*                                    </h4>*/}
+                {/*                                    /!*<span className="vendor-product-count">(27 Products)</span>*!/*/}
+                {/*                                    <div className="ratings-container">*/}
+                {/*                                        <div className="ratings-full">*/}
+                {/*                                            <span className="ratings"  style={{width: `${(18 * e.rating)+'%'}` }}></span>*/}
+                {/*                                            <span className="tooltiptext tooltip-top"></span>*/}
+                {/*                                        </div>*/}
+                {/*                                    </div>*/}
+                {/*                                    <span className="vendor-product-count">category</span>*/}
+                {/*                                </div>*/}
+                {/*                            </div>*/}
+                {/*                            <div className="vendor-products row cols-3 gutter-sm">*/}
+                {/*                                <div className="vendor-product">*/}
+                {/*                                    <figure className="product-media">*/}
+                {/*                                        <a href={`shop/${e.id}`}>*/}
+                {/*                                            <img src={e.images[0]}*/}
+                {/*                                                 alt=" Product" width="100" height="113"/>*/}
+                {/*                                        </a>*/}
+                {/*                                    </figure>*/}
+                {/*                                </div>*/}
+                {/*                                <div className="vendor-product">*/}
+                {/*                                    <figure className="product-media">*/}
+                {/*                                        <a href={`shop/${e.id}`}>*/}
+                {/*                                            <img src={e.images[1]}*/}
+                {/*                                                 alt=" Product" width="100" height="113"/>*/}
+                {/*                                        </a>*/}
+                {/*                                    </figure>*/}
+                {/*                                </div>*/}
+                {/*                                <div className="vendor-product">*/}
+                {/*                                    <figure className="product-media">*/}
+                {/*                                        <a href={`shop/${e.id}`}>*/}
+                {/*                                            <img src={e.images[2]}*/}
+                {/*                                                 alt=" Product" width="100" height="113"/>*/}
+                {/*                                        </a>*/}
+                {/*                                    </figure>*/}
+                {/*                                </div>*/}
+                {/*                            </div>*/}
+                {/*                        </div>*/}
+                {/*                    </div>*/}
+                {/*                ))}*/}
+                {/*            </div>*/}
+                {/*            <div className="swiper-pagination"></div>*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
                     <div className="container mt-1 pt-2">
                         <div className=" pb-5">
                             <div className="title-link-wrapper title-deals appear-animate">
@@ -406,7 +647,7 @@ export default function MainForHome(){
                                                              height="355"/>
                                                     </a>
                                                     <div className="product-action-vertical">
-                                                        <a href="#" className="btn-product-icon btn-quickview w-icon-search"
+                                                        <a href="#" onClick={()=>showQuickviewm(e.product)} className="btn-product-icon btn-quickview w-icon-search"
                                                            title="Quick View"></a>
                                                     </div>
                                                     <div className="product-countdown-container" style={{height: '35px'}}>
@@ -437,17 +678,15 @@ export default function MainForHome(){
                                                         <li>{e.product.short_desc3}</li>
                                                     </ul>
                                                     <div className="product-action">
-                                                        <a href="#" className="btn-product-icon btn-cart w-icon-cart"
-                                                           onClick={()=>{addToCardFunc(e.product_version.id)}}
-                                                           title="Add to cart"></a>
+                                                        <a href="#" className="btn-product btn-cart" onClick={()=>{addToCardFunc(e.id)}} title="Add to Cart"><i
+                                                            className="w-icon-cart"></i> Səbətə əlavə et</a>
                                                         <a href="#" className="btn-product-icon btn-wishlist w-icon-heart"
                                                            onClick={()=>{addWishlist(e.id)}}
-                                                           title="Wishlist"></a>
-                                                        <a href="#" className="btn-product-icon  w-icon-compare"
+                                                           title="Add to wishlist"></a>
+                                                        <a href="#"
                                                            onClick={()=>{addCompare(e)}}
+                                                           className="btn-product-icon btn-compare w-icon-compare"
                                                            title="Compare"></a>
-                                                        <a href="#" onClick={()=>showQuickviewm(e.product)} className="btn-product-icon btn-quickview w-icon-search"
-                                                           title="CƏLD BAXIŞ"></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -468,7 +707,7 @@ export default function MainForHome(){
                             </ul>
                         </div>
                         <div className="product-wrapper row cols-lg-5 cols-md-4 cols-sm-2 cols-2">
-                            {allProductsTitle.map(e=>(
+                            {productHome.map(e=>(
                                 <div className="product-wrap" style={{width:"50%",height:"50%"}}>
                                     <div className="product text-center">
                                         <figure className="product-media">

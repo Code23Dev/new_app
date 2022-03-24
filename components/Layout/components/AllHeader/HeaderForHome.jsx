@@ -16,7 +16,10 @@ import {urlTopForImg} from "../../../../services/apiUrl/urlTopForImg";
 import {headerText} from "../../../../services/headerText";
 import {productFilter} from "../../../../services/productFilter";
 import {useRouter} from "next/router";
+import {useDispatch, useSelector} from "react-redux";
+import { homeProductFilter } from '../../../../store/actions';
 export default function HeaderForHome(){
+    const dispatch = useDispatch();
     const [logoPost, setLogoPost] = React.useState([]);
     useEffect(() => {
         let mounted = true;
@@ -124,6 +127,14 @@ export default function HeaderForHome(){
     }, [])
 
 
+        // cartByUserID(userId)
+        //     .then(items => {
+        //         setCartByUserIDItem(items.data.product_version)
+        //         setCartCountItem(items.data.product_version.length)
+        //         items.data.product_version.map(c=>cardPrice+=Number(c.final_price))
+        //         setAllCardPrice(cardPrice)
+        //     })
+
     const [showMe, setShowMe] = useState("none");
     function showMeFunc(){
         if (showMe== 'none'){
@@ -193,9 +204,15 @@ export default function HeaderForHome(){
             category:selectData
         }
         productFilter(data).then(e=>{
-            console.log(e)
+            dispatch(homeProductFilter(e.data.results))
         })
+
+
     }
+    useEffect(() => {
+        mainSearch()
+    })
+
     const router = useRouter()
     const myAccountForUserOrVendor = () =>{
        if (localStorage.getItem('username') && localStorage.getItem('token') ){
@@ -205,6 +222,11 @@ export default function HeaderForHome(){
            setShowMe("block")
        }
     }
+
+
+    const addToCardData = useSelector((state) => state.addToCardData);
+    let cardPrice
+    addToCardData.map(c=>cardPrice+=Number(c.final_price))
     return (
         <>
         <style jsx>{`
@@ -476,7 +498,7 @@ export default function HeaderForHome(){
                         <div className="header-left mr-md-4">
                             <a href="#" className="mobile-menu-toggle text-white w-icon-hamburger" aria-label="menu-toggle">
                             </a>
-                            <a href="/home" className="logo ml-lg-0">
+                            <a href="/" className="logo ml-lg-0">
                                 <img src={logoTitle} alt="logo" width="82" height="45"/>
                             </a>
                             <form method="get" action="#"
@@ -522,18 +544,18 @@ export default function HeaderForHome(){
                                 <div className="cart-overlay"></div>
                                 <a href="#" className="cart-toggle label-down link text-white">
                                     <i className="w-icon-cart">
-                                        <span className="cart-count">{cartCount}</span>
+                                        <span className="cart-count">{addToCardData.length}</span>
                                     </i>
                                     <span className="cart-label">Səbət</span>
                                 </a>
                                 <div className="dropdown-box">
                                     <div className="cart-header">
                                         <span>Alış-veriş səbəti</span>
-                                        <a href="#" className="btn-close">Close<i className="w-icon-long-arrow-right"></i></a>
+                                        <a href="#" className="btn-close">Bağla<i className="w-icon-long-arrow-right"></i></a>
                                     </div>
 
                                     <div className="products">
-                                        {cartByUserIDItem.map(e=>(
+                                        {addToCardData.map(e=>(
                                             <div className="product product-cart">
                                                 <div className="product-detail">
                                                     <a href="product-default.html" className="product-name">{e.product.title}</a>

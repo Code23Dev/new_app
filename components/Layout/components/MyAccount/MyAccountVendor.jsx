@@ -4,13 +4,19 @@ import {deleteProduct} from "../../../../services/products/deleteProduct";
 import Link from 'next/link'
 import MyAccountVendorDetails from "./MyAccountVendorDetails";
 import Select from "react-select";
-import {subSubCategories} from "../../../../services/subSubCategories";
+import {storeOrders} from "../../../../services/storeOrders";
+import {allCities} from "../../../../services/address/allCities";
+import {allRegions} from "../../../../services/address/allRegions";
+import {allAvenues} from "../../../../services/address/allAvenues";
+import {allStreets} from "../../../../services/address/allStreets";
+import {allCategories} from "../../../../services/allCategories";
+import {savaChangeVendorAccount} from "../../../../services/savaChangeVendorAccount";
 export default function MyAccountVendor(){
     const [optionsTitle, optionsData] = useState([]);
     useEffect(() => {
         let mounted = true;
         let options = []
-        subSubCategories()
+        allCities()
             .then(items => {
                 if(mounted) {
                     const data = items.data.map(e=>{
@@ -21,9 +27,97 @@ export default function MyAccountVendor(){
             })
         return () => mounted = false;
     }, [])
+
+    const [optionsHandleChange, optionsHandleChangeData] = useState([]);
     let handleChange = (selectedOptions) => {
-        sendDataUrl(selectedOptions)
+        optionsHandleChangeData(selectedOptions)
     }
+
+    const [optionsCategoria, optionsCategoriaData] = useState([]);
+    useEffect(() => {
+        let mounted = true;
+        let options = []
+        allCategories()
+            .then(items => {
+                if(mounted) {
+                    const data = items.data.map(e=>{
+                        options.push({value:e['id'], label:e['title']})
+                    })
+                    optionsCategoriaData(options)
+                }
+            })
+        return () => mounted = false;
+    }, [])
+
+    const [optionsHandleChangeCategoria, optionsHandleChangeCategoriaData] = useState([]);
+    let handleChangeCategoria = (selectedOptions) => {
+        optionsHandleChangeCategoriaData(selectedOptions)
+    }
+
+
+
+
+    const [optionsRegions, optionsRegionsData] = useState([]);
+    useEffect(() => {
+        let mounted = true;
+        let options = []
+        allRegions()
+            .then(items => {
+                if(mounted) {
+                    const data = items.data.map(e=>{
+                        options.push({value:e['id'], label:e['title']})
+                    })
+                    optionsRegionsData(options)
+                }
+            })
+        return () => mounted = false;
+    }, [])
+
+    const [optionsHandleChangeRegions, optionsHandleChangeChangeRegionsData] = useState([]);
+    let handleChangeRegions = (selectedOptions) => {
+        optionsHandleChangeChangeRegionsData(selectedOptions)
+    }
+
+    const [optionsAvenues, optionsAvenuesData] = useState([]);
+    const [optionsHandleChangeAvenues, optionsHandleChangeChangeAvenuesData] = useState([]);
+    useEffect(() => {
+        let mounted = true;
+        let options = []
+        allAvenues()
+            .then(items => {
+                if(mounted) {
+                    const data = items.data.map(e=>{
+                        options.push({value:e['id'], label:e['title']})
+                    })
+                    optionsAvenuesData(options)
+                }
+            })
+        return () => mounted = false;
+    }, [])
+    let handleAvenues = (selectedOptions) => {
+        optionsHandleChangeChangeAvenuesData(selectedOptions)
+    }
+
+    const [optionsStreets, optionsStreetsData] = useState([]);
+    const [optionsHandleChangeStreets, optionsHandleChangeChangeStreetsData] = useState([]);
+    useEffect(() => {
+        let mounted = true;
+        let options = []
+        allStreets()
+            .then(items => {
+                if(mounted) {
+                    const data = items.data.map(e=>{
+                        options.push({value:e['id'], label:e['title']})
+                    })
+                    optionsStreetsData(options)
+                }
+            })
+        return () => mounted = false;
+    }, [])
+    let handleStreets = (selectedOptions) => {
+        optionsHandleChangeChangeStreetsData(selectedOptions)
+    }
+
     function deleteUserProduct(id){
         swal({
             title: "Əminsinizmi?!",
@@ -48,8 +142,6 @@ export default function MyAccountVendor(){
                 }
             });
     }
-    const [selectedFile1, setSelectedFile1] = useState(null);
-    const [selectedFile2, setSelectedFile2] = useState(null);
     const [userProductsTitle, userProductsData] = useState([]);
     useEffect(() => {
         let mounted = true;
@@ -65,15 +157,141 @@ export default function MyAccountVendor(){
         return () => mounted = false;
     }, [])
 
-    const [createListItem, setCreateList] = useState([]);
+    const [iconTitle, iconData] = useState([{value:0, label:'Linkedin'},{value:1, label:'Whatsapp'},{value:2, label:'Telegram'},{value:3, label:'Instagram'},{value:4, label:'Facebook'}]);
+    const [selectedIconItem, setSelectedIcon] = useState(null);
+    let iconChange = (selectedIcon) => {
+        setSelectedIcon(selectedIcon)
+    }
+    const [createListItem, setCreateList] = useState([{selectedIconItem:null,iconUrl:null}]);
+    const [iconUrl1, setIconUrl1] = useState(null);
+    const [iconUrl2, setIconUrl2] = useState(null);
+    const [iconUrl3, setIconUrl3] = useState(null);
+    const [iconUrl4, setIconUrl4] = useState(null);
+
+    const [iconChange1T, iconChange1] = useState(null);
+    const [iconChange2T, iconChange2] = useState(null);
+    const [iconChange3T, iconChange3] = useState(null);
+    const [iconChange4T, iconChange4] = useState(null);
+
+    let fhg = []
     const createInput = () =>{
-        setCreateList([{DD:"DD"}])
-        console.log(createListItem)
+        fhg.push({selectedIconItem:"selectedIconItem.label",iconUrl:"iconUrl"})
+        setSelectedIcon(null)
+        setIconUrl(null)
+        console.log(fhg)
     }
     const logout = () =>{
         localStorage.setItem('token',null)
         localStorage.setItem('username',null)
     }
+    let windowPassword,
+        windowPassword2,
+        windowPassword3,
+        windowName,
+        windowLastName,
+        windowPhoneNumber,
+        windowEmail,
+        windowImg1,
+        windowImg2,
+        windowOthersPlace
+    if (typeof window !== 'undefined' ){
+        //JSON.parse(localStorage.getItem('userData')).is_store
+        windowPassword =  JSON.parse(localStorage.getItem('userData')).address ?  JSON.parse(localStorage.getItem('userData')).address : null
+        windowName = JSON.parse(localStorage.getItem('userData')).name ? JSON.parse(localStorage.getItem('userData')).name : null
+        windowPhoneNumber = JSON.parse(localStorage.getItem('userData')).number ? JSON.parse(localStorage.getItem('userData')).number : null
+        windowEmail = JSON.parse(localStorage.getItem('userData')).email ? JSON.parse(localStorage.getItem('userData')).email : null
+        windowImg2 = JSON.parse(localStorage.getItem('userData')).logo ? JSON.parse(localStorage.getItem('userData')).logo : null
+        windowImg1 = JSON.parse(localStorage.getItem('userData')).cover_image ? JSON.parse(localStorage.getItem('userData')).cover_image : null
+    }
+    const [selectedFile1, setSelectedFile1] = useState(windowImg1);
+    const [selectedFile2, setSelectedFile2] = useState(windowImg2);
+    const [password3, setPassword3] = useState(windowPassword3);
+    const [password2, setPassword2] = useState(windowPassword2);
+    const [password, setPassword] = useState(windowPassword);
+    const [name, setName] = useState(windowName);
+    const [lastName, setLastName] = useState(windowLastName);
+    const [phoneNumber, setPhoneNumber] = useState(windowPhoneNumber);
+    const [email, setEmail] = useState(windowEmail);
+    const [othersPlace, setOthersPlace] = useState(windowOthersPlace);
+
+    const saveChangeVendor = () => {
+        console.log(iconChange1T.label)
+        let data = {
+            name: name,
+            address: email,
+            address_addtional: othersPlace,
+            cover_image: windowImg2,
+            logo: windowImg1,
+            city:optionsHandleChange,
+            region:optionsHandleChangeRegions,
+            avenue:optionsHandleChangeAvenues,
+            street:optionsHandleChangeStreets,
+            social_icons:[
+                {url:iconUrl1,social_media:iconChange1T.label},
+                {url:iconUrl2,social_media:iconChange2T.label},
+                {url:iconUrl3,social_media:iconChange3T.label},
+                {url:iconUrl4,social_media:iconChange4T.label}
+            ]
+
+        }
+        console.log(data)
+        savaChangeVendorAccount(localStorage.getItem("userId")).then((e)=>{
+            console.log(e,data)
+        })
+    }
+    const [storeOrdersTitle, storeOrdersData] = useState([]);
+    useEffect(() => {
+        storeOrders(localStorage.getItem("userId"))
+            .then(items => {
+                if (items.data.results){
+                    //product_versions
+                    items.data.results.map(e=>console.log(e.product_versions))
+                }
+
+
+            }).catch((e)=>{
+            console.log(e)
+        })
+    }, [])
+
+    let InputContainer,InputSelect
+    if (typeof window !== 'undefined' ){
+         InputContainer = window.document.getElementById("input-container");
+         InputSelect = window.document.getElementById("input-Select");
+    }
+
+
+    const BtnAddFunc = () => {
+            let inputList = window.document.createElement("input");
+            inputList.setAttribute('class', 'InputField form-control form-control-md mb-0');
+            inputList.setAttribute("style", "background-color:#ffff;");
+            InputContainer.appendChild(inputList);
+            let array = ["Linkedin","Whatsapp","Telegram","Instagram","Facebook"];
+            let selectList = document.createElement("select");
+            selectList.id = "mySelect";
+
+            selectList.setAttribute('class', 'InputField');
+            InputSelect.appendChild(selectList);
+            for (let i = 0; i < array.length; i++) {
+                let option = document.createElement("option");
+                option.value = array[i];
+                option.text = array[i];
+                selectList.appendChild(option);
+            }
+    }
+
+    const BtnCreateArrayFunc = () => {
+            const inputs = InputContainer.querySelectorAll(".InputField");
+            const inputSelect = InputSelect.querySelectorAll(".InputField");
+            let selectAllData = []
+            const array = [...inputs,...inputSelect].map(i => {
+                selectAllData.push({value:i.value})
+                console.log(selectAllData)
+            });
+            console.log(array);
+    }
+
+
     return (
         <>
             <style jsx>{`
@@ -239,66 +457,30 @@ export default function MyAccountVendor(){
                                                     <table className="shop-table account-orders-table mb-6">
                                                         <thead>
                                                         <tr>
-                                                            <th className="order-id">Order</th>
-                                                            <th className="order-date">Date</th>
-                                                            <th className="order-status">Status</th>
-                                                            <th className="order-total">Total</th>
-                                                            <th className="order-actions">Actions</th>
+                                                            <th className="order-id">N</th>
+                                                            <th className="order-date">Məhsulun Tarix</th>
+                                                            <th className="order-status">Məhsulun kodu</th>
+                                                            <th className="order-total">Məhsulun adı</th>
+                                                            <th className="order-actions">Kateqoriyası</th>
+                                                            <th className="order-actions">Qiymət</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <tr>
-                                                            <td className="order-id">#2321</td>
-                                                            <td className="order-date">August 20, 2021</td>
-                                                            <td className="order-status">Processing</td>
-                                                            <td className="order-total">
-                                                                <span className="order-price">$121.00</span> for
-                                                                <span className="order-quantity"> 1</span> item
-                                                            </td>
-                                                            <td className="order-action">
-                                                                <a href="#"
-                                                                   className="btn btn-outline btn-default btn-block btn-sm btn-rounded">View</a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className="order-id">#2321</td>
-                                                            <td className="order-date">August 20, 2021</td>
-                                                            <td className="order-status">Processing</td>
-                                                            <td className="order-total">
-                                                                <span className="order-price">$150.00</span> for
-                                                                <span className="order-quantity"> 1</span> item
-                                                            </td>
-                                                            <td className="order-action">
-                                                                <a href="#"
-                                                                   className="btn btn-outline btn-default btn-block btn-sm btn-rounded">View</a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className="order-id">#2319</td>
-                                                            <td className="order-date">August 20, 2021</td>
-                                                            <td className="order-status">Processing</td>
-                                                            <td className="order-total">
-                                                                <span className="order-price">$201.00</span> for
-                                                                <span className="order-quantity"> 1</span> item
-                                                            </td>
-                                                            <td className="order-action">
-                                                                <a href="#"
-                                                                   className="btn btn-outline btn-default btn-block btn-sm btn-rounded">View</a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className="order-id">#2318</td>
-                                                            <td className="order-date">August 20, 2021</td>
-                                                            <td className="order-status">Processing</td>
-                                                            <td className="order-total">
-                                                                <span className="order-price">$321.00</span> for
-                                                                <span className="order-quantity"> 1</span> item
-                                                            </td>
-                                                            <td className="order-action">
-                                                                <a href="#"
-                                                                   className="btn btn-outline btn-default btn-block btn-sm btn-rounded">View</a>
-                                                            </td>
-                                                        </tr>
+                                                        {storeOrdersTitle.map(e=>(
+                                                            <tr>
+                                                                <td className="order-id">#2321</td>
+                                                                <td className="order-date">August 20, 2021</td>
+                                                                <td className="order-status">Processing</td>
+                                                                <td className="order-total">
+                                                                    <span className="order-price">$121.00</span> for
+                                                                    <span className="order-quantity"> 1</span> item
+                                                                </td>
+                                                                <td className="order-action">
+                                                                    <a href="#"
+                                                                       className="btn btn-outline btn-default btn-block btn-sm btn-rounded">View</a>
+                                                                </td>
+                                                            </tr>
+                                                        ))}
                                                         </tbody>
                                                     </table>
 
@@ -356,12 +538,28 @@ export default function MyAccountVendor(){
                                                         <div className="row " style={{margin:"1px"}}>
                                                             <div className="col-md-6 mt-2">
                                                                 <div className="form-group" style={{backgroundColor:"#f5f5f5", borderRadius:"2rem", padding:"7px"}}>
-                                                                    <input type="text"  style={{backgroundColor:"#ffff",marginTop: '7px'}} id="firstname" name="firstname" placeholder="Mağaza adı" className="form-control form-control-md"/>
+                                                                    <input type="text"  style={{backgroundColor:"#ffff",marginTop: '7px'}} id="firstname" name="firstname"
+                                                                           value={name}
+                                                                           onChange={e=>setName(e.target.value)}
+                                                                           placeholder="Mağaza adı" className="form-control form-control-md"/>
                                                                 </div>
                                                             </div>
                                                             <div className="col-md-6 mt-2">
                                                                 <div className="form-group" style={{backgroundColor:"#f5f5f5", borderRadius:"2rem", padding:"7px"}}>
-                                                                    <input type="tel" style={{backgroundColor:"#ffff",marginTop: '7px'}} id="display-name" name="display_name" placeholder="Əlaqə nömrəsı" className="form-control form-control-md"/>
+                                                                    <input type="tel" style={{backgroundColor:"#ffff",marginTop: '7px'}} id="display-name"
+                                                                           value={phoneNumber}
+                                                                           onChange={e=>setPhoneNumber(e.target.value)}
+                                                                           name="display_name" placeholder="Əlaqə nömrəsı" className="form-control form-control-md"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="row " style={{margin:"1px"}}>
+                                                            <div className="col-md-6 mt-2">
+                                                                <div className="form-group" style={{backgroundColor:"#f5f5f5", borderRadius:"2rem", padding:"7px"}}>
+                                                                    <input type="text"  style={{backgroundColor:"#ffff",marginTop: '7px'}} id="firstname" name="firstname"
+                                                                           value={email}
+                                                                           onChange={e=>setEmail(e.target.value)}
+                                                                           placeholder="E-mail Ünvan" className="form-control form-control-md"/>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -383,11 +581,11 @@ export default function MyAccountVendor(){
                                                                 <div className="form-group">
                                                                     <Select
                                                                         name="colors"
-                                                                        options={optionsTitle}
+                                                                        options={optionsRegions}
                                                                         className="basic-multi-select"
                                                                         placeholder={"Rayon"}
                                                                         classNamePrefix="select"
-                                                                        onChange={handleChange}
+                                                                        onChange={handleChangeRegions}
                                                                     />
                                                                 </div>
                                                             </div>
@@ -395,11 +593,11 @@ export default function MyAccountVendor(){
                                                                 <div className="form-group">
                                                                     <Select
                                                                         name="colors"
-                                                                        options={optionsTitle}
+                                                                        options={optionsAvenues}
                                                                         className="basic-multi-select"
                                                                         placeholder={"Qəsəbə"}
                                                                         classNamePrefix="select"
-                                                                        onChange={handleChange}
+                                                                        onChange={handleAvenues}
                                                                     />
                                                                 </div>
                                                             </div>
@@ -407,56 +605,35 @@ export default function MyAccountVendor(){
                                                                 <div className="form-group">
                                                                     <Select
                                                                         name="colors"
-                                                                        options={optionsTitle}
+                                                                        options={optionsStreets}
                                                                         className="basic-multi-select"
                                                                         placeholder={"Küçə"}
                                                                         classNamePrefix="select"
-                                                                        onChange={handleChange}
+                                                                        onChange={handleStreets}
                                                                     />
                                                                 </div>
                                                             </div>
                                                             <div className="col-md-12">
                                                                     <div className="form-group">
-                                                                        <input type="text" id="display-name" style={{backgroundColor:"#ffff",marginTop: '7px'}} name="display_name" placeholder="Digəri" className="form-control form-control-md mb-0"/>
+                                                                        <input type="text" id="display-name"
+                                                                               value={othersPlace}
+                                                                               onChange={e=>setOthersPlace(e.target.value)}
+                                                                               style={{backgroundColor:"#ffff",marginTop: '7px'}} name="display_name" placeholder="Digəri" className="form-control form-control-md mb-0"/>
                                                                     </div>
                                                             </div>
 
                                                         </div>
                                                         <div className="row mt-4 mb-5 ml-2 mr-2 pb-3" style={{backgroundColor:"#f5f5f5", borderRadius:"2rem", padding:"7px",margin:"5px"}}>
                                                             <label htmlFor="display-name">Kateqoriya</label>
-                                                            <div className="col-md-3">
+                                                            <div className="col-md-12">
                                                                 <div className="form-group">
                                                                     <Select
                                                                         name="colors"
-                                                                        options={optionsTitle}
+                                                                        options={optionsCategoria}
                                                                         className="basic-multi-select"
                                                                         placeholder={"Kateqoriya"}
                                                                         classNamePrefix="select"
-                                                                        onChange={handleChange}
-                                                                    />
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-md-3">
-                                                                <div className="form-group">
-                                                                    <Select
-                                                                        name="colors"
-                                                                        options={optionsTitle}
-                                                                        className="basic-multi-select"
-                                                                        placeholder={"Sub Kateqoriya"}
-                                                                        classNamePrefix="select"
-                                                                        onChange={handleChange}
-                                                                    />
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-md-3">
-                                                                <div className="form-group">
-                                                                    <Select
-                                                                        name="colors"
-                                                                        options={optionsTitle}
-                                                                        className="basic-multi-select"
-                                                                        placeholder={"Sub Sub Kateqoriya"}
-                                                                        classNamePrefix="select"
-                                                                        onChange={handleChange}
+                                                                        onChange={handleChangeCategoria}
                                                                     />
                                                                 </div>
                                                             </div>
@@ -464,32 +641,114 @@ export default function MyAccountVendor(){
                                                         <div className="row mt-4 mb-5 ml-2 mr-2 pb-3" style={{backgroundColor:"#f5f5f5", borderRadius:"2rem", padding:"7px",margin:"5px"}}>
                                                             <label htmlFor="display-name">Social Icons</label>
                                                             <div className="row">
-                                                                <div className="col-1">
-                                                                    <div className="form-group pt-1">
-                                                                        <div style={{textAlign:'center',fontSize:'20px'}} onClick={()=>{createInput()}}> <i className="fas fa-plus"></i></div>
-                                                                    </div>
-                                                                </div>
-                                                                {createListItem.map(n=>(
+                                                                {/*<header>*/}
+                                                                {/*    <form name="input" method="get">*/}
+
+                                                                {/*    </form>*/}
+                                                                {/*    <button className="btn-add" type="button" onClick={()=>{BtnAddFunc()}}>Add</button>*/}
+                                                                {/*</header>*/}
+                                                                {/*<main>*/}
+                                                                {/*    <div className="row">*/}
+                                                                {/*        <div id="input-Select" className="col-2">*/}
+
+                                                                {/*        </div>*/}
+                                                                {/*        <div id="input-container" className="col-10">*/}
+
+                                                                {/*        </div>*/}
+                                                                {/*    </div>*/}
+                                                                {/*    <button className="btn-create-array"  type="button" onClick={()=>{BtnCreateArrayFunc()}}>Create array</button>*/}
+                                                                {/*</main>*/}
+                                                                {/*<div className="col-1">*/}
+                                                                {/*    <div className="form-group pt-1">*/}
+                                                                {/*        <div style={{textAlign:'center',fontSize:'20px'}} onClick={()=>{createInput()}}> <i className="fas fa-plus"></i></div>*/}
+                                                                {/*    </div>*/}
+                                                                {/*</div>*/}
                                                                     <>
-                                                                        <div className="col-2">
+                                                                        <div className="col-4 mt-2">
                                                                             <div className="form-group">
-                                                                                <select className="form-control form-control-md mb-0">
-                                                                                    <option value="Facebook">Facebook</option>
-                                                                                    <option value="Instagram">Instagram</option>
-                                                                                    <option value="Telegram">Telegram</option>
-                                                                                    <option value="Whatsapp">Whatsapp</option>
-                                                                                    <option value="Linkedin">Linkedin</option>
-                                                                                </select>
+                                                                                <Select
+                                                                                    name="colors"
+                                                                                    options={iconTitle}
+                                                                                    className="basic-multi-select"
+                                                                                    placeholder={"Social Icons"}
+                                                                                    classNamePrefix="select"
+                                                                                    onChange={iconChange1}
+                                                                                />
                                                                             </div>
                                                                         </div>
-                                                                        <div className="col-9">
+                                                                        <div className="col-8">
                                                                             <div className="form-group">
-                                                                                <input type="text" id="display-name" name="display_name"
+                                                                                <input type="text" style={{backgroundColor:"#ffff",marginTop: '7px'}}
+                                                                                       value={iconUrl1}
+                                                                                       onChange={e=>setIconUrl1(e.target.value)}
+                                                                                       id="display-name" name="display_name"
+                                                                                       className="form-control form-control-md mb-0"/>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="col-4 mt-2">
+                                                                            <div className="form-group">
+                                                                                <Select
+                                                                                    name="colors"
+                                                                                    options={iconTitle}
+                                                                                    className="basic-multi-select"
+                                                                                    placeholder={"Social Icons"}
+                                                                                    classNamePrefix="select"
+                                                                                    onChange={iconChange2}
+                                                                                />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="col-8">
+                                                                            <div className="form-group">
+                                                                                <input type="text" style={{backgroundColor:"#ffff",marginTop: '7px'}}
+                                                                                       value={iconUrl2}
+                                                                                       onChange={e=>setIconUrl2(e.target.value)}
+                                                                                       id="display-name" name="display_name"
+                                                                                       className="form-control form-control-md mb-0"/>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="col-4 mt-2">
+                                                                            <div className="form-group">
+                                                                                <Select
+                                                                                    name="colors"
+                                                                                    options={iconTitle}
+                                                                                    className="basic-multi-select"
+                                                                                    placeholder={"Social Icons"}
+                                                                                    classNamePrefix="select"
+                                                                                    onChange={iconChange3}
+                                                                                />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="col-8">
+                                                                            <div className="form-group">
+                                                                                <input type="text" style={{backgroundColor:"#ffff",marginTop: '7px'}}
+                                                                                       value={iconUrl3}
+                                                                                       onChange={e=>setIconUrl3(e.target.value)}
+                                                                                       id="display-name" name="display_name"
+                                                                                       className="form-control form-control-md mb-0"/>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="col-4 mt-2">
+                                                                            <div className="form-group">
+                                                                                <Select
+                                                                                    name="colors"
+                                                                                    options={iconTitle}
+                                                                                    className="basic-multi-select"
+                                                                                    placeholder={"Social Icons"}
+                                                                                    classNamePrefix="select"
+                                                                                    onChange={iconChange4}
+                                                                                />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="col-8">
+                                                                            <div className="form-group">
+                                                                                <input type="text" style={{backgroundColor:"#ffff",marginTop: '7px'}}
+                                                                                       value={iconUrl4}
+                                                                                       onChange={e=>setIconUrl4(e.target.value)}
+                                                                                       id="display-name" name="display_name"
                                                                                        className="form-control form-control-md mb-0"/>
                                                                             </div>
                                                                         </div>
                                                                     </>
-                                                                ))}
 
                                                             </div>
                                                         </div>
@@ -503,7 +762,7 @@ export default function MyAccountVendor(){
                                                                                className="inputFile"
                                                                                onChange={(event) => setSelectedFile1(window.URL.createObjectURL(event.target.files[0]))}/>
                                                                         <label htmlFor="frr" style={{backgroundImage:"url(" + selectedFile1 + ")",width:'500px', height:'200px',}}>
-                                                                           <span style={{justifyContent:"center", display:"flex",position:"relative", top:"80px",  fontSize:"20px"}}>bbjj</span>
+                                                                           <span style={{justifyContent:"center", display:"flex",position:"relative", top:"80px",  fontSize:"20px"}}><i className="w-icon-map-marker mr-1"></i></span>
                                                                         </label>
                                                                     </form>
                                                                 </div>
@@ -515,7 +774,7 @@ export default function MyAccountVendor(){
                                                                                className="inputFile"
                                                                                onChange={(event) => setSelectedFile2(window.URL.createObjectURL(event.target.files[0]))}/>
                                                                         <label htmlFor="dd" style={{backgroundImage:"url(" + selectedFile2 + ")",width:'600px', height:'200px',}}>
-                                                                            <span style={{justifyContent:"center", display:"flex",position:"relative", top:"80px", left:"-150px",  fontSize:"20px"}}>bbssssssssjj</span>
+                                                                            <span style={{justifyContent:"center", display:"flex",position:"relative", top:"80px", left:"-150px",  fontSize:"20px"}}><i className="w-icon-map-marker mr-1"></i></span>
                                                                         </label>
                                                                     </form>
                                                                 </div>
@@ -525,22 +784,35 @@ export default function MyAccountVendor(){
                                                         <div className="mt-5 row">
                                                             <h4 className="title title-password ls-25 font-weight-bold">Şifrə dəyişikliyi</h4>
                                                             <div className="col-4">
-                                                              <div className="form-group" style={{backgroundColor:"#f5f5f5", borderRadius:"2rem",padding:"7px",margin:"5px"}}>
-                                                                  <input type="password" id="display-name" style={{backgroundColor:"#ffff",marginTop: '5px'}} name="display_name" placeholder="Cari Şifrə" className="form-control form-control-md mb-0"/>
-                                                              </div>
+                                                                <div className="form-group" style={{backgroundColor:"#f5f5f5", borderRadius:"2rem",padding:"7px",margin:"5px"}}>
+                                                                    <input type="password"
+                                                                           id="display-name"
+                                                                           value={password}
+                                                                           onChange={e=>setPassword(e.target.value)}
+                                                                           style={{backgroundColor:"#ffff",marginTop: '5px'}} name="display_name" placeholder="Cari Şifrə" className="form-control form-control-md mb-0"/>
+                                                                </div>
                                                             </div>
                                                             <div className="col-4">
-                                                              <div className="form-group" style={{backgroundColor:"#f5f5f5", borderRadius:"2rem",padding:"7px",margin:"5px"}}>
-                                                                  <input type="password" id="display-name" style={{backgroundColor:"#ffff",marginTop: '5px'}} name="display_name" placeholder="Yeni Şifrəni Əlavə Edin" className="form-control form-control-md mb-0"/>
-                                                              </div>
+                                                                <div className="form-group" style={{backgroundColor:"#f5f5f5", borderRadius:"2rem",padding:"7px",margin:"5px"}}>
+                                                                    <input type="password"
+                                                                           id="display-name"
+                                                                           value={password2}
+                                                                           onChange={e=>setPassword2(e.target.value)}
+                                                                           style={{backgroundColor:"#ffff",marginTop: '5px'}} name="display_name" placeholder="Yeni Şifrəni Əlavə Edin" className="form-control form-control-md mb-0"/>
+                                                                </div>
                                                             </div>
                                                             <div className="col-4">
-                                                              <div className="form-group" style={{backgroundColor:"#f5f5f5", borderRadius:"2rem",padding:"7px",margin:"5px"}}>
-                                                                  <input type="password" id="display-name" style={{backgroundColor:"#ffff",marginTop: '5px'}} name="display_name" placeholder="Şifrəni təsdiqləyin" className="form-control form-control-md mb-0"/>
-                                                              </div>
+                                                                <div className="form-group" style={{backgroundColor:"#f5f5f5", borderRadius:"2rem",padding:"7px",margin:"5px"}}>
+                                                                    <input type="password"
+                                                                           id="display-name"
+                                                                           value={password3}
+                                                                           onChange={e=>setPassword3(e.target.value)}
+                                                                           style={{backgroundColor:"#ffff",marginTop: '5px'}} name="display_name" placeholder="Şifrəni təsdiqləyin" className="form-control form-control-md mb-0"/>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <button type="submit"
+                                                        <button type="button"
+                                                                onClick={()=>{saveChangeVendor()}}
                                                                 className="btn btn-dark btn-rounded btn-sm mb-4 mt-5">Dəyişiklikləri yadda saxla
                                                         </button>
                                                         <div> <label htmlFor="display-name">Açilma tarixi: 1/31/2022</label></div>

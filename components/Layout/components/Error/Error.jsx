@@ -24,7 +24,7 @@ export default function Error(){
                                     <span className="text-secondary">Vay!!!</span> Burada bir şey səhv getdi
                                 </h2>
                                 <p className="text-light">Daxil edilmiş URL-də yazım səhvi ola bilər və ya axtardığınız səhifə artıq mövcud olmaya bilər</p>
-                                <a href="/home" className="btn btn-dark btn-rounded btn-icon-right">Ana Səhifəyə qayıt<i
+                                <a href="/" className="btn btn-dark btn-rounded btn-icon-right">Ana Səhifəyə qayıt<i
                                     className="w-icon-long-arrow-right"></i></a>
                             </div>
                         </div>

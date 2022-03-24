@@ -6,14 +6,14 @@ import {refresh} from "../services/auth/refresh";
 
 export default function Index() {
 
-    if (typeof window !== 'undefined' ){
-           if (localStorage.getItem('token')){
-               console.log("ds")
-               refresh(localStorage.getItem('token')).then((e)=>{
-                   console.log(e)
-               })
-           }
-    }
+    // if (typeof window !== 'undefined' ){
+    //        if (localStorage.getItem('token')){
+    //            console.log("ds")
+    //            refresh(localStorage.getItem('token')).then((e)=>{
+    //                console.log(e)
+    //            })
+    //        }
+    // }
     return (
         <div>
             <NavbarForHome/>

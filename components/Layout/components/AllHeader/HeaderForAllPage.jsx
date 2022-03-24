@@ -14,6 +14,10 @@ import {addToCard} from "../../../../services/card/addToCard";
 import {logo} from "../../../../services/logo";
 import {urlTopForImg} from "../../../../services/apiUrl/urlTopForImg";
 import {headerText} from "../../../../services/headerText";
+import ContactUs from "../Contact/ContactUs";
+import Contact from "../Contact/ContactUs";
+import {useDispatch, useSelector} from "react-redux";
+import { incrementCount, decrementCount, resetCount } from '../../../../store/actions';
 export default function HeaderForAllPage(){
     const [logoPost, setLogoPost] = React.useState([]);
     useEffect(() => {
@@ -156,7 +160,7 @@ export default function HeaderForAllPage(){
         setPhoneInput(`+${value}`)
     };
 
-    const deleteCardProduct = ({quantity:quantity,productId:productId}) => {
+        const deleteCardProduct = ({quantity:quantity,productId:productId}) => {
         let data = {user:Number(localStorage.getItem('userId')), product:Number(productId)}
         removeFromCart(data)
             .then((e)=>{
@@ -183,17 +187,26 @@ export default function HeaderForAllPage(){
     let handleChange = (selectedOptions) => {
         setSelectData(selectedOptions.label)
     }
+
+    const [productFilterData, setProductFilter] = useState([]);
+
+    const count = useSelector((state) => state.counter);
+    const dispatch = useDispatch();
     const mainSearch = () =>{
         let data ={
             title:searchData,
             category:selectData
         }
         productFilter(data).then(e=>{
-            console.log(e)
+            setProductFilter(e.results)
+
         })
     }
+    const addToCardData = useSelector((state) => state.addToCardData);
+
     return (
         <>
+
             <style jsx>{`
                     .react-tel-input .form-control {
                         position: relative;
@@ -462,7 +475,7 @@ export default function HeaderForAllPage(){
                             <div className="header-left mr-md-4">
                                 <a href="#" className="mobile-menu-toggle text-white w-icon-hamburger" aria-label="menu-toggle">
                                 </a>
-                                <a href="/home" className="logo ml-lg-0">
+                                <a href="/" className="logo ml-lg-0">
                                     <img src={logoTitle} alt="logo" width="82" height="45"/>
                                 </a>
                                 <form method="get" action="#"
@@ -508,18 +521,18 @@ export default function HeaderForAllPage(){
                                     <div className="cart-overlay"></div>
                                     <a href="#" className="cart-toggle label-down link text-white">
                                         <i className="w-icon-cart">
-                                            <span className="cart-count">{cartCount}</span>
+                                            <span className="cart-count">{addToCardData.length}</span>
                                         </i>
                                         <span className="cart-label">Səbət</span>
                                     </a>
                                     <div className="dropdown-box">
                                         <div className="cart-header">
                                             <span>Alış-veriş səbəti</span>
-                                            <a href="#" className="btn-close">Close<i className="w-icon-long-arrow-right"></i></a>
+                                            <a href="#" className="btn-close">Bağla<i className="w-icon-long-arrow-right"></i></a>
                                         </div>
 
                                         <div className="products">
-                                            {cartByUserIDItem.map(e=>(
+                                            {addToCardData.map(e=>(
                                                 <div className="product product-cart">
                                                     <div className="product-detail">
                                                         <a href="product-default.html" className="product-name">{e.product.title}</a>

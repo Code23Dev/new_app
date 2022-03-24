@@ -6,8 +6,25 @@ import axios from "axios";
 import "../../../../node_modules/video-react/dist/video-react.css";
 import ReactPlayer from 'react-player'
 import { TagsInput } from "react-tag-input-component";
+import {subCategories} from "../../../../services/subCategories";
 export default function MyAccountVendorDetails(){
+
     const [test, testData] = useState([]);
+    const [optionsSubCategories, optionsSubCategoriesData] = useState([]);
+    useEffect(() => {
+        let mounted = true;
+        let options = []
+        subCategories()
+            .then(items => {
+                if(mounted) {
+                    const data = items.data.map(e=>{
+                        options.push({value:e['id'], label:e['title']})
+                    })
+                    optionsSubCategoriesData(options)
+                }
+            })
+        return () => mounted = false;
+    }, [])
     const [optionsTitle, optionsData] = useState([]);
     useEffect(() => {
         let mounted = true;
@@ -28,7 +45,7 @@ export default function MyAccountVendorDetails(){
     }
     let sendDataUrl = (selectedOptions) => {
         if (selectedOptions.value){
-            axios.get(`http://34.125.190.3/api/filters-by-subsub/${selectedOptions.value}`)
+            axios.get(`http://34.125.190.3/api/filters-by-subsub/₼{selectedOptions.value}`)
                 .then((response) => response)
                 .then(items => {
                     let itemsData = []
@@ -123,6 +140,17 @@ export default function MyAccountVendorDetails(){
         const base64 = await convertToBase64(file);
         setPostImageFile4({ ...postImageFile4, image: base64 });
     };
+
+
+    const [changeSubSub, setChangeSubSub] = useState(null);
+    const [changeSub, setChangeSub] = useState(null);
+    const handleChangeSubSub = (selectedOptions) => {
+        setChangeSubSub(selectedOptions.value)
+    }
+    const handleChangeSub = (selectedOptions) => {
+        setChangeSub(selectedOptions.value)
+    }
+
     let handleAddInput = ()=>{
         let tagsKeyValue = []
         selected.map(r=>{tagsKeyValue.push({title: r})})
@@ -138,6 +166,10 @@ export default function MyAccountVendorDetails(){
             short_desc1: shortDesc1Title,
             short_desc2: shortDesc2Title,
             short_desc3: shortDesc3Title,
+            main_image:postImageFile1.image,
+            sub_sub_category:changeSub,
+            sub_category: changeSubSub,
+            category: JSON.parse(localStorage.getItem('userData')).category,
             video: videoFilePathEEE,
             images: [
                 {
@@ -163,6 +195,10 @@ export default function MyAccountVendorDetails(){
             })
             .catch(e=>console.log(e))
     }
+
+
+
+
     return (
         <>
             <style jsx>{`
@@ -176,7 +212,7 @@ export default function MyAccountVendorDetails(){
                     display: block;
                     left: 0;
                     top: 3px;
-                    content: "$";
+                    content: "₼";
                     font-family: "wolmart";
                     font-weight: 600;
                     font-size: 1.3rem;
@@ -201,8 +237,9 @@ export default function MyAccountVendorDetails(){
 
             `}</style>
             <div className="page-wrapper">
-                <main className="main mb-10 pb-1">
 
+
+                <main className="main mb-10 pb-1">
                     <div className="page-content">
                         <div className="container">
                             <div className="row gutter-lg">
@@ -229,7 +266,7 @@ export default function MyAccountVendorDetails(){
                                                                                className="inputFile"
                                                                                onChange={(e) => handleFileUploadFile1(e)}/>
                                                                         <label htmlFor="file1" style={{backgroundImage:"url(" + selectedFile1 + ")",width:'800px', height:'490px',}}>
-                                                                            <span style={{justifyContent:"center", display:"flex",position:"relative", top:"80px", left:"-150px",  fontSize:"20px"}}>bbssssssssjj</span>
+                                                                            <span style={{justifyContent:"center", display:"flex",position:"relative", top:"80px", left:"-150px",  fontSize:"20px"}}><i className="w-icon-map-marker  mt-5"></i></span>
                                                                         </label>
                                                                     </form>
                                                                 </div>
@@ -322,9 +359,19 @@ export default function MyAccountVendorDetails(){
                                                         name="colors"
                                                         options={optionsTitle}
                                                         className="basic-multi-select"
-                                                        placeholder={"kateqoriya seç"}
+                                                        placeholder={"sub sub kateqoriya seç"}
                                                         classNamePrefix="select"
-                                                        onChange={handleChange}
+                                                        onChange={handleChangeSub}
+                                                    />
+                                                </div>
+                                                <div className="form-group mb-3">
+                                                    <Select
+                                                        name="colors"
+                                                        options={optionsSubCategories}
+                                                        className="basic-multi-select"
+                                                        placeholder={"sub kateqoriya seç"}
+                                                        classNamePrefix="select"
+                                                        onChange={handleChangeSubSub}
                                                     />
                                                 </div>
 
@@ -376,24 +423,18 @@ export default function MyAccountVendorDetails(){
                                                     <div className="col-md-6">
                                                         <figure className="product-image">
                                                             <div>
-                                                                <form  className="p-5">
-                                                                    <input type="file"
-                                                                           accept=".jpg, .jpeg, .png"
-                                                                           name="file09" id="file09"
-                                                                           className="inputFile"
-                                                                           onChange={handleVideoUpload}/>
-                                                                        <ReactPlayer id="file09" url={videoFilePathEEE} width="100%" height="100%" controls />
-                                                                </form>
                                                                 <form>
                                                                     <input type="file"
                                                                            className="inputFile"
                                                                            name="file0e9" id="file0e9"
                                                                            onChange={handleVideoUpload} />
                                                                     <label htmlFor="file0e9" style={{width:"200px", height:"100px"}}>
-                                                                        <ReactPlayer url={videoFilePathEEE} width="100%" height="100%" controls />
+                                                                        <ReactPlayer
+                                                                            url={videoFilePathEEE}  playIcon={<button>Play</button>} width="100%" height="100%" controls />
                                                                     </label>
                                                                 </form>
                                                             </div>
+
                                                         </figure>
                                                     </div>
                                                     <div className="col-md-6">
