@@ -24,6 +24,7 @@ const MainForHome = (props) => {
   }, []);
 
   const [displayedCategoriesTitle, setDisplayedCategoriesData] = useState([]);
+
   useEffect(() => {
     displayedCategories().then((items) => {
       setDisplayedCategoriesData(items.data);
@@ -514,7 +515,7 @@ const MainForHome = (props) => {
                     <a href={`shop/${e.id}?card`}>
                       <figure className="category-media">
                         <img
-                          src="assets/images/demos/demo4/categories/1-1.jpg"
+                          src={e.image}
                           alt="Category"
                           width="190"
                           height="215"
