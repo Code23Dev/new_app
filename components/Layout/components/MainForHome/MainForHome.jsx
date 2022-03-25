@@ -765,7 +765,7 @@ const MainForHome = (props) => {
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="nav-filter" data-filter="*">
+                  <a href="/shop" className="nav-filter" data-filter="*">
                     HAMISINA BAX
                   </a>
                 </li>
