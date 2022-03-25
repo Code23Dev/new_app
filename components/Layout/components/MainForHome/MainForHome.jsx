@@ -19,6 +19,7 @@ const MainForHome = (props) => {
 
   useEffect(() => {
     sliders().then((items) => {
+      console.log(items.data)
       setOptionsData(items.data);
     });
   }, []);
@@ -440,10 +441,9 @@ const MainForHome = (props) => {
 
                           <p className="text-white">{e.description} </p>
                           <a
-                            href="/shop"
-                            className="btn btn-white btn-outline btn-rounded btn-icon-right"
+                            href={e.button_link} className="btn btn-white btn-outline btn-rounded btn-icon-right"
                           >
-                            Shop Now<i className="w-icon-long-arrow-right"></i>
+                            {e.button_text}<i className="w-icon-long-arrow-right"></i>
                           </a>
                         </div>
                       </div>
