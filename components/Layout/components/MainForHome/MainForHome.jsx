@@ -25,23 +25,9 @@ const MainForHome = (props) => {
 
   const [displayedCategoriesTitle, setDisplayedCategoriesData] = useState([]);
   useEffect(() => {
-    if (localStorage.getItem("displayedCategoriesTitle")) {
-      setDisplayedCategoriesData(
-        JSON.parse(localStorage.getItem("displayedCategoriesTitle"))
-      );
-    } else {
-      displayedCategories().then((items) => {
-        localStorage.setItem(
-          "displayedCategoriesTitle",
-          JSON.stringify(items.data)
-        );
-        JSON.parse(localStorage.getItem("displayedCategoriesTitle"))
-          ? setDisplayedCategoriesData(
-              JSON.parse(localStorage.getItem("displayedCategoriesTitle"))
-            )
-          : [];
-      });
-    }
+    displayedCategories().then((items) => {
+      setDisplayedCategoriesData(items.data);
+    });
   }, []);
 
   const [displayedBenefits, setDisplayedBenefitsData] = useState([]);
@@ -1226,6 +1212,7 @@ const MainForHome = (props) => {
           ></circle>
         </svg>
       </a>
+
       <div className="product product-single product-popup">
         <div className="row gutter-lg">
           <div className="col-md-6 mb-4 mb-md-0">
