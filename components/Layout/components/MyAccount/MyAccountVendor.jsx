@@ -194,7 +194,7 @@ export default function MyAccountVendor(){
         windowImg1,
         windowImg2,
         windowOthersPlace
-    if (typeof window !== 'undefined' ){
+    if (typeof window !== 'undefined' && localStorage.getItem('userData')){
         //JSON.parse(localStorage.getItem('userData')).is_store
         windowPassword =  JSON.parse(localStorage.getItem('userData')).address ?  JSON.parse(localStorage.getItem('userData')).address : null
         windowName = JSON.parse(localStorage.getItem('userData')).name ? JSON.parse(localStorage.getItem('userData')).name : null

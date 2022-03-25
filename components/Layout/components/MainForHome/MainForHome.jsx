@@ -656,7 +656,7 @@ const MainForHome = (props) => {
                               href="#"
                               onClick={() => showQuickviewm(e.product)}
                               className="btn-product-icon btn-quickview w-icon-search"
-                              title="Quick View"
+                              title="Cəld Baxış"
                             ></a>
                           </div>
                           <div
@@ -718,11 +718,12 @@ const MainForHome = (props) => {
                             </a>
                             <a
                               href="#"
+                              style={{color: '#cd2027'}}
                               className="btn-product-icon btn-wishlist w-icon-heart"
                               onClick={() => {
                                 addWishlist(e.id);
                               }}
-                              title="Add to wishlist"
+                              title="Bəyəndiklərim"
                             ></a>
                             <a
                               href="#"
@@ -730,7 +731,7 @@ const MainForHome = (props) => {
                                 addCompare(e);
                               }}
                               className="btn-product-icon btn-compare w-icon-compare"
-                              title="Compare"
+                              title="Müqayisə"
                             ></a>
                           </div>
                         </div>
@@ -800,7 +801,7 @@ const MainForHome = (props) => {
                           onClick={() => {
                             addWishlist(e.id);
                           }}
-                          title="Wishlist"
+                          title="Bəyəndiklərim"
                         ></a>
                         <a
                           href="#"
@@ -808,7 +809,7 @@ const MainForHome = (props) => {
                           onClick={() => {
                             addCompare(e);
                           }}
-                          title="Compare"
+                          title="Müqayisə"
                         ></a>
                         <a
                           href="#"

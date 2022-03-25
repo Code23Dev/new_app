@@ -654,7 +654,7 @@ export default function HeaderForAllPage(){
                                     </nav>
                                 </div>
                                 <div className="header-right">
-                                    <a href="/more-products" className="d-xl-show" style={{color:'cd2027'}}>Endirimli Məhsullar</a>
+                                    <a href="/more-products" className="d-xl-show" style={{color:'#cd2027'}}>Endirimli Məhsullar</a>
                                     {/* <a href="/order" className="d-xl-show"><i className="w-icon-map-marker mr-1"></i>Sifarişi izlə</a> */}
                                 </div>
                             </div>

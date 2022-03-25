@@ -517,12 +517,12 @@ export default function MainForShop(){
                                                             <a href="#" className="btn-product-icon btn-cart w-icon-cart"
                                                                title="Add to cart"></a>
                                                             <a href="#" className="btn-product-icon btn-wishlist w-icon-heart"
-                                                               title="Wishlist"></a>
+                                                               title="Bəyəndiklərim"></a>
                                                             <a href="#" className="btn-product-icon btn-compare w-icon-compare"
-                                                               title="Compare"></a>
+                                                               title="Müqayisə"></a>
                                                             <a href="#" className="btn-product-icon btn-quickview w-icon-search"
                                                                onClick={()=>{setProductByIdFunc(e?.id)}}
-                                                               title="Quick View"
+                                                               title="Cəld Baxış"
                                                             ></a>
                                                         </div>
                                                     </figure>
@@ -563,7 +563,7 @@ export default function MainForShop(){
                                                     </a>
                                                     <div className="product-action-vertical">
                                                         <a href="#" className="btn-product-icon btn-quickview w-icon-search"
-                                                           title="Quick View"></a>
+                                                           title="Cəld Baxış"></a>
                                                     </div>
                                                     {/*<div className="product-countdown-container" style={{height: '35px'}}>*/}
                                                     {/*    <div className="product-countdown countdown-compact" data-until="2021, 9, 9"*/}
@@ -606,9 +606,9 @@ export default function MainForShop(){
                                                         <a href="#" className="btn-product btn-cart" title="Səbətə əlavə et"><i
                                                             className="w-icon-cart"></i> Səbətə əlavə et</a>
                                                         <a href="#" className="btn-product-icon btn-wishlist w-icon-heart"
-                                                           title="Add to wishlist"></a>
+                                                           title="Bəyəndiklərim"></a>
                                                         <a href="#" className="btn-product-icon btn-compare w-icon-compare"
-                                                           title="Compare"></a>
+                                                           title="Müqayisə"></a>
                                                     </div>
                                                 </div>
                                             </div>

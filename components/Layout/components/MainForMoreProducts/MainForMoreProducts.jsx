@@ -211,7 +211,7 @@ export default function MainForMoreProducts(){
                                                 </a>
                                                 <div className="product-action-vertical">
                                                     <a href="#" className="btn-product-icon btn-quickview w-icon-search"
-                                                       title="Quick View" onClick={()=>{quickViewFunc(e.product.id)}}></a>
+                                                       title="Cəld Baxış" onClick={()=>{quickViewFunc(e.product.id)}}></a>
                                                 </div>
                                                 <div className="product-countdown-container" style={{height: '35px'}}>
                                                     <div className="product-countdown countdown-compact" data-until="2021, 9, 9"
@@ -244,9 +244,9 @@ export default function MainForMoreProducts(){
                                                     <a href="#" className="btn-product btn-cart" title="Add to Cart"><i
                                                         className="w-icon-cart"></i>Səbətə əlavə et</a>
                                                     <a href="#" className="btn-product-icon btn-wishlist w-icon-heart"
-                                                       title="Add to wishlist"></a>
+                                                       title="Bəyəndiklərim"></a>
                                                     <a href="#" className="btn-product-icon btn-compare w-icon-compare"
-                                                       title="Compare"></a>
+                                                       title="Müqayisə"></a>
                                                 </div>
                                             </div>
                                         </div>

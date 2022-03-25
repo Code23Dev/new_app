@@ -1386,17 +1386,17 @@ export default function MainForProduct() {
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-wishlist w-icon-heart"
-                                  title="Wishlist"
+                                  title="Bəyəndiklərim"
                                 ></a>
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-compare w-icon-compare"
-                                  title="Compare"
+                                  title="Müqayisə"
                                 ></a>
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-quickview w-icon-search"
-                                  title="Quick View"
+                                  title="Cəld Baxış"
                                 ></a>
                               </div>
                             </figure>
@@ -1471,17 +1471,17 @@ export default function MainForProduct() {
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-wishlist w-icon-heart"
-                                  title="Wishlist"
+                                  title="Bəyəndiklərim"
                                 ></a>
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-compare w-icon-compare"
-                                  title="Compare"
+                                  title="Müqayisə"
                                 ></a>
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-quickview w-icon-search"
-                                  title="Quick View"
+                                  title="Cəld Baxış"
                                 ></a>
                               </div>
                             </figure>
@@ -1540,17 +1540,17 @@ export default function MainForProduct() {
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-wishlist w-icon-heart"
-                                  title="Wishlist"
+                                  title="Bəyəndiklərim"
                                 ></a>
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-compare w-icon-compare"
-                                  title="Compare"
+                                  title="Müqayisə"
                                 ></a>
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-quickview w-icon-search"
-                                  title="Quick View"
+                                  title="Cəld Baxış"
                                 ></a>
                               </div>
                             </figure>
@@ -1604,17 +1604,17 @@ export default function MainForProduct() {
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-wishlist w-icon-heart"
-                                  title="Wishlist"
+                                  title="Bəyəndiklərim"
                                 ></a>
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-compare w-icon-compare"
-                                  title="Compare"
+                                  title="Müqayisə"
                                 ></a>
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-quickview w-icon-search"
-                                  title="Quick View"
+                                  title="Cəld Baxış"
                                 ></a>
                               </div>
                             </figure>
@@ -1670,17 +1670,17 @@ export default function MainForProduct() {
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-wishlist w-icon-heart"
-                                  title="Wishlist"
+                                  title="Bəyəndiklərim"
                                 ></a>
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-compare w-icon-compare"
-                                  title="Compare"
+                                  title="Müqayisə"
                                 ></a>
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-quickview w-icon-search"
-                                  title="Quick View"
+                                  title="Cəld Baxış"
                                 ></a>
                               </div>
                             </figure>
@@ -1755,17 +1755,17 @@ export default function MainForProduct() {
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-wishlist w-icon-heart"
-                                  title="Wishlist"
+                                  title="Bəyəndiklərim"
                                 ></a>
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-compare w-icon-compare"
-                                  title="Compare"
+                                  title="Müqayisə"
                                 ></a>
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-quickview w-icon-search"
-                                  title="Quick View"
+                                  title="Cəld Baxış"
                                 ></a>
                               </div>
                             </figure>
@@ -1824,17 +1824,17 @@ export default function MainForProduct() {
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-wishlist w-icon-heart"
-                                  title="Wishlist"
+                                  title="Bəyəndiklərim"
                                 ></a>
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-compare w-icon-compare"
-                                  title="Compare"
+                                  title="Müqayisə"
                                 ></a>
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-quickview w-icon-search"
-                                  title="Quick View"
+                                  title="Cəld Baxış"
                                 ></a>
                               </div>
                             </figure>
@@ -1888,17 +1888,17 @@ export default function MainForProduct() {
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-wishlist w-icon-heart"
-                                  title="Wishlist"
+                                  title="Bəyəndiklərim"
                                 ></a>
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-compare w-icon-compare"
-                                  title="Compare"
+                                  title="Müqayisə"
                                 ></a>
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-quickview w-icon-search"
-                                  title="Quick View"
+                                  title="Cəld Baxış"
                                 ></a>
                               </div>
                             </figure>
@@ -1969,17 +1969,17 @@ export default function MainForProduct() {
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-wishlist w-icon-heart"
-                                  title="Wishlist"
+                                  title="Bəyəndiklərim"
                                 ></a>
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-compare w-icon-compare"
-                                  title="Compare"
+                                  title="Müqayisə"
                                 ></a>
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-quickview w-icon-search"
-                                  title="Quick View"
+                                  title="Cəld Baxış"
                                 ></a>
                               </div>
                             </figure>
@@ -2054,17 +2054,17 @@ export default function MainForProduct() {
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-wishlist w-icon-heart"
-                                  title="Wishlist"
+                                  title="Bəyəndiklərim"
                                 ></a>
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-compare w-icon-compare"
-                                  title="Compare"
+                                  title="Müqayisə"
                                 ></a>
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-quickview w-icon-search"
-                                  title="Quick View"
+                                  title="Cəld Baxış"
                                 ></a>
                               </div>
                             </figure>
@@ -2123,17 +2123,17 @@ export default function MainForProduct() {
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-wishlist w-icon-heart"
-                                  title="Wishlist"
+                                  title="Bəyəndiklərim"
                                 ></a>
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-compare w-icon-compare"
-                                  title="Compare"
+                                  title="Müqayisə"
                                 ></a>
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-quickview w-icon-search"
-                                  title="Quick View"
+                                  title="Cəld Baxış"
                                 ></a>
                               </div>
                             </figure>
@@ -2187,17 +2187,17 @@ export default function MainForProduct() {
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-wishlist w-icon-heart"
-                                  title="Wishlist"
+                                  title="Bəyəndiklərim"
                                 ></a>
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-compare w-icon-compare"
-                                  title="Compare"
+                                  title="Müqayisə"
                                 ></a>
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-quickview w-icon-search"
-                                  title="Quick View"
+                                  title="Cəld Baxış"
                                 ></a>
                               </div>
                             </figure>
@@ -2253,17 +2253,17 @@ export default function MainForProduct() {
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-wishlist w-icon-heart"
-                                  title="Wishlist"
+                                  title="Bəyəndiklərim"
                                 ></a>
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-compare w-icon-compare"
-                                  title="Compare"
+                                  title="Müqayisə"
                                 ></a>
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-quickview w-icon-search"
-                                  title="Quick View"
+                                  title="Cəld Baxış"
                                 ></a>
                               </div>
                             </figure>
@@ -2338,17 +2338,17 @@ export default function MainForProduct() {
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-wishlist w-icon-heart"
-                                  title="Wishlist"
+                                  title="Bəyəndiklərim"
                                 ></a>
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-compare w-icon-compare"
-                                  title="Compare"
+                                  title="Müqayisə"
                                 ></a>
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-quickview w-icon-search"
-                                  title="Quick View"
+                                  title="Cəld Baxış"
                                 ></a>
                               </div>
                             </figure>
@@ -2407,17 +2407,17 @@ export default function MainForProduct() {
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-wishlist w-icon-heart"
-                                  title="Wishlist"
+                                  title="Bəyəndiklərim"
                                 ></a>
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-compare w-icon-compare"
-                                  title="Compare"
+                                  title="Müqayisə"
                                 ></a>
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-quickview w-icon-search"
-                                  title="Quick View"
+                                  title="Cəld Baxış"
                                 ></a>
                               </div>
                             </figure>
@@ -2471,17 +2471,17 @@ export default function MainForProduct() {
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-wishlist w-icon-heart"
-                                  title="Wishlist"
+                                  title="Bəyəndiklərim"
                                 ></a>
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-compare w-icon-compare"
-                                  title="Compare"
+                                  title="Müqayisə"
                                 ></a>
                                 <a
                                   href="#"
                                   className="btn-product-icon btn-quickview w-icon-search"
-                                  title="Quick View"
+                                  title="Cəld Baxış"
                                 ></a>
                               </div>
                             </figure>
