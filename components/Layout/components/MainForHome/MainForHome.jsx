@@ -440,7 +440,7 @@ const MainForHome = (props) => {
 
                           <p className="text-white">{e.description} </p>
                           <a
-                            href="demo8-shop.html"
+                            href="/shop"
                             className="btn btn-white btn-outline btn-rounded btn-icon-right"
                           >
                             Shop Now<i className="w-icon-long-arrow-right"></i>
@@ -526,81 +526,7 @@ const MainForHome = (props) => {
               ))}
             </div>
           </div>
-          {/*    <div className="container mt-1 pt-2">*/}
-          {/*        <h2 className="title title-underline mb-4 appear-animate">Ən yeni Mağazalar</h2>*/}
-          {/*        <div className="swiper-container swiper-theme mb-10 pb-2 appear-animate" data-swiper-options="{*/}
-          {/*    'spaceBetween': 20,*/}
-          {/*    'slidesPerView': 1,*/}
-          {/*    'breakpoints': {*/}
-          {/*        '576': {*/}
-          {/*            'slidesPerView': 2*/}
-          {/*        },*/}
-          {/*        '768': {*/}
-          {/*            'slidesPerView': 3*/}
-          {/*        },*/}
-          {/*        '1200': {*/}
-          {/*            'slidesPerView': 4*/}
-          {/*        }*/}
-          {/*    }*/}
-          {/*}">*/}
-          {/*            <div className="swiper-wrapper row cols-lg-4 cols-md-3 cols-sm-2 cols-1">*/}
-          {/*                {data2.map(e=>(*/}
-          {/*                    <div className="swiper-slide vendor-widget mb-0">*/}
-          {/*                        <div className="vendor-widget-2">*/}
-          {/*                            <div className="vendor-details">*/}
-          {/*                                <figure className="vendor-logo">*/}
-          {/*                                    <a href={`shop/${e.id}`}>*/}
-          {/*                                        <img src={e.main_image} alt="Vendor Logo"*/}
-          {/*                                             style={{maxHeight:"50px"}}/>*/}
-          {/*                                    </a>*/}
-          {/*                                </figure>*/}
-          {/*                                <div className="vendor-personal">*/}
-          {/*                                    <h4 className="vendor-name">*/}
-          {/*                                        <a href={`shop/${e.id}`}>{e.title}</a>*/}
-          {/*                                    </h4>*/}
-          {/*                                    /!*<span className="vendor-product-count">(27 Products)</span>*!/*/}
-          {/*                                    <div className="ratings-container">*/}
-          {/*                                        <div className="ratings-full">*/}
-          {/*                                            <span className="ratings"  style={{width: `${(18 * e.rating)+'%'}` }}></span>*/}
-          {/*                                            <span className="tooltiptext tooltip-top"></span>*/}
-          {/*                                        </div>*/}
-          {/*                                    </div>*/}
-          {/*                                    <span className="vendor-product-count">category</span>*/}
-          {/*                                </div>*/}
-          {/*                            </div>*/}
-          {/*                            <div className="vendor-products row cols-3 gutter-sm">*/}
-          {/*                                <div className="vendor-product">*/}
-          {/*                                    <figure className="product-media">*/}
-          {/*                                        <a href={`shop/${e.id}`}>*/}
-          {/*                                            <img src={e.images[0]}*/}
-          {/*                                                 alt=" Product" width="100" height="113"/>*/}
-          {/*                                        </a>*/}
-          {/*                                    </figure>*/}
-          {/*                                </div>*/}
-          {/*                                <div className="vendor-product">*/}
-          {/*                                    <figure className="product-media">*/}
-          {/*                                        <a href={`shop/${e.id}`}>*/}
-          {/*                                            <img src={e.images[1]}*/}
-          {/*                                                 alt=" Product" width="100" height="113"/>*/}
-          {/*                                        </a>*/}
-          {/*                                    </figure>*/}
-          {/*                                </div>*/}
-          {/*                                <div className="vendor-product">*/}
-          {/*                                    <figure className="product-media">*/}
-          {/*                                        <a href={`shop/${e.id}`}>*/}
-          {/*                                            <img src={e.images[2]}*/}
-          {/*                                                 alt=" Product" width="100" height="113"/>*/}
-          {/*                                        </a>*/}
-          {/*                                    </figure>*/}
-          {/*                                </div>*/}
-          {/*                            </div>*/}
-          {/*                        </div>*/}
-          {/*                    </div>*/}
-          {/*                ))}*/}
-          {/*            </div>*/}
-          {/*            <div className="swiper-pagination"></div>*/}
-          {/*        </div>*/}
-          {/*    </div>*/}
+
           <div className="container mt-1 pt-2">
             <div className=" pb-5">
               <div className="title-link-wrapper title-deals appear-animate">
