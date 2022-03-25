@@ -294,7 +294,97 @@ export default function MainForVendor() {
 
     return (
         <>
-            <div className="page-wrapper">
+            <style jsx>
+                {`
+          .react-tel-input .form-control {
+            position: relative;
+            font-size: 14px;
+            letter-spacing: 0.01rem;
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+            padding-left: 48px;
+            margin-left: 0;
+            background: #ffffff;
+            border: 1px solid #cacaca;
+            border-radius: 5px;
+            line-height: 25px;
+            height: 35px;
+            width: 100% !important;
+            outline: none;
+          }
+          .header-top {
+            background: #0b899b;
+            font-size: 1.1rem;
+            letter-spacing: -0.027em;
+            text-transform: capitalize;
+            color: #fff;
+            border-bottom: 1px solid;
+            border-color: rgba(238, 238, 238, 0.2);
+          }
+          .header-middle {
+            padding-top: 3.2rem;
+            padding-bottom: 3.2rem;
+            color: #fff;
+            background: #0088dd;
+            font-size: 1.2rem;
+            border-bottom: 0;
+          }
+          .modal {
+            display: block;
+            position: fixed;
+            z-index: 9999;
+            padding-top: 30px;
+            left: 0;
+            top: 0;
+            min-width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+          }
+          .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 10px;
+            border: 1px solid #888;
+            width: 57%;
+          }
+
+          .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            padding-left: 20px;
+          }
+
+          .close:hover,
+          .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+            padding-left: 20px;
+          }
+          @media only screen and (max-width: 1000px) {
+            .modal-content {
+              background-color: #fefefe;
+              margin: auto;
+              padding: 10px;
+              border: 1px solid #888;
+              width: 85%;
+            }
+          }
+          .header a:not(.btn):hover {
+            color: #336699;
+          }
+          .right-scroll {
+            overflow-y: auto;
+            height: 400px;
+            overflow-x: hidden;
+          }
+        `}
+            </style>
+            <div  className="page-wrapper">
                 <main className="main">
                     <nav className="breadcrumb-nav">
                         <div className="container">
@@ -307,7 +397,7 @@ export default function MainForVendor() {
                     <div className="page-content mb-8">
                         <div className="container">
                             <div className="row gutter-lg">
-                                <aside className="sidebar vendor-sidebar sticky-sidebar-wrapper left-sidebar sidebar-fixed">
+                                <aside style={{height:'1000px'}} className="sidebar  vendor-sidebar sticky-sidebar-wrapper left-sidebar sidebar-fixed">
                                     <div className="sidebar-overlay"></div>
                                     <a className="sidebar-close" href="#"><i className="close-icon"></i></a>
                                     <a href="#" className="sidebar-toggle"><i className="fas fa-chevron-right"></i></a>
@@ -326,9 +416,9 @@ export default function MainForVendor() {
                                             </div>
 
 
-                                            <div className="widget widget-collapsible">
+                                            <div className="widget widget-collapsible ">
                                                 <h3 className="widget-title"><span>Bütün Kateqoriyalar</span></h3>
-                                                <ul className="widget-body filter-items item-check mt-1">
+                                                <ul className="widget-body filter-items item-check mt-1 right-scroll">
                                                     {optionsTitle.map((item, index) => (
                                                         <div  onChange={(e) => handleChangeAllCategories(e,item.id,item.title)}>
                                                             <div key={item.id} className="mt-2">
@@ -348,7 +438,7 @@ export default function MainForVendor() {
                                             </div>
                                             <div className="widget widget-collapsible">
                                                 <h3 className="widget-title"><span>Alt Kateqoriyalar</span></h3>
-                                                <ul className="widget-body filter-items item-check mt-1">
+                                                <ul className="widget-body filter-items item-check mt-1 right-scroll" >
                                                     {subCategoriesTitle.map((item, index) => (
                                                         <div  onChange={(e) => handleChangeSubCategories(e,item.id,item.title)}>
                                                             <div key={item.id} className="mt-2">
@@ -368,7 +458,7 @@ export default function MainForVendor() {
                                             </div>
                                             <div className="widget widget-collapsible">
                                                 <h3 className="widget-title"><span>Sub Kateqoriyalar</span></h3>
-                                                <ul className="widget-body filter-items item-check mt-1">
+                                                <ul className="widget-body filter-items item-check mt-1 right-scroll">
                                                     {subSubCategoriesTitle.map((item, index) => (
                                                         <div  onChange={(e) => handleChangeSubSubCategories(e,item.id,item.title)}>
                                                             <div key={item.id} className="mt-2">
