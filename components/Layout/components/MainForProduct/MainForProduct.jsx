@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
 import MainForProductDetails from "./ MainForProductDetails";
-import { productByUser } from "../../../../services/products/productByUser";
-import parse from "html-react-parser";
+import {productById} from "../../../../services/products/productById";
 export default function MainForProduct() {
   const [productByIdTitle, productByIdData] = useState([]);
+  const [productByIdURLTitle, productByIdURLData] = useState([]);
   useEffect(() => {
     let mounted = true;
     //window.location.pathname
-    productByUser(window.location.href.split("/")[3]).then((items) => {
+    productById(window.location.href.split("/")[3]).then((items) => {
       if (mounted) {
-        productByIdData(items.data);
+        if (items){
+          productByIdURLData(items.data.images,"kk")
+          productByIdData([items.data]);
+        }
+
       }
     });
     return () => (mounted = false);
@@ -272,119 +276,66 @@ export default function MainForProduct() {
                   <div className="product product-single row mb-2">
                     <div className="product product-single row mb-2">
                       <div className="col-md-6 mb-4 mb-md-8">
-                        <div className="product-gallery product-gallery-sticky">
-                          <div
-                            className="swiper-container product-single-swiper swiper-theme nav-inner"
-                            data-swiper-options="{
+                        {productByIdURLTitle.map(e=>(
+                            <div className="product-gallery product-gallery-sticky">
+                              <div
+                                  className="swiper-container product-single-swiper swiper-theme nav-inner"
+                                  data-swiper-options="{
                                             'navigation': {
                                                 'nextEl': '.swiper-button-next',
                                                 'prevEl': '.swiper-button-prev'
                                             }
                                         }"
-                          >
-                            <div className="swiper-wrapper row cols-1 gutter-no">
-                              <div className="swiper-slide">
-                                <figure className="product-image">
-                                  <img
-                                    src="assets/images/products/accordion/1-800x900.jpg"
-                                    data-zoom-image="assets/images/products/accordion/1-800x900.jpg"
-                                    alt="Bodycare Smooth Powder"
-                                    width="800"
-                                    height="900"
-                                  />
-                                </figure>
+                              >
+                                <div className="swiper-wrapper row cols-1 gutter-no">
+                                  {e.image(r=>( <div className="swiper-slide">
+                                    <figure className="product-image">
+                                      <img
+                                          src="assets/images/products/accordion/1-800x900.jpg"
+                                          data-zoom-image="assets/images/products/accordion/1-800x900.jpg"
+                                          alt="Bodycare Smooth Powder"
+                                          width="800"
+                                          height="900"
+                                      />
+                                    </figure>
+                                  </div>))}
+                                </div>
+                                <button className="swiper-button-next"></button>
+                                <button className="swiper-button-prev"></button>
+                                <a
+                                    href="#"
+                                    className="product-gallery-btn product-image-full"
+                                >
+                                  <i className="w-icon-zoom"></i>
+                                </a>
                               </div>
-                              <div className="swiper-slide">
-                                <figure className="product-image">
-                                  <img
-                                    src="assets/images/products/accordion/2-800x900.jpg"
-                                    data-zoom-image="assets/images/products/accordion/2-800x900.jpg"
-                                    alt="Bodycare Smooth Powder"
-                                    width="488"
-                                    height="549"
-                                  />
-                                </figure>
-                              </div>
-                              <div className="swiper-slide">
-                                <figure className="product-image">
-                                  <img
-                                    src="assets/images/products/accordion/3-800x900.jpg"
-                                    data-zoom-image="assets/images/products/accordion/3-800x900.jpg"
-                                    alt="Bodycare Smooth Powder"
-                                    width="800"
-                                    height="900"
-                                  />
-                                </figure>
-                              </div>
-                              <div className="swiper-slide">
-                                <figure className="product-image">
-                                  <img
-                                    src="assets/images/products/accordion/4-800x900.jpg"
-                                    data-zoom-image="assets/images/products/accordion/4-800x900.jpg"
-                                    alt="Bodycare Smooth Powder"
-                                    width="800"
-                                    height="900"
-                                  />
-                                </figure>
-                              </div>
-                            </div>
-                            <button className="swiper-button-next"></button>
-                            <button className="swiper-button-prev"></button>
-                            <a
-                              href="#"
-                              className="product-gallery-btn product-image-full"
-                            >
-                              <i className="w-icon-zoom"></i>
-                            </a>
-                          </div>
 
-                          <div
-                            className="product-thumbs-wrap swiper-container"
-                            data-swiper-options="{
+                              <div
+                                  className="product-thumbs-wrap swiper-container"
+                                  data-swiper-options="{
                                             'navigation': {
                                                 'nextEl': '.swiper-button-next',
                                                 'prevEl': '.swiper-button-prev'
                                             }
                                         }"
-                          >
-                            <div className="product-thumbs swiper-wrapper row cols-4 gutter-sm">
-                              <div className="product-thumb swiper-slide">
-                                <img
-                                  src="assets/images/products/accordion/1-800x900.jpg"
-                                  alt="Product Thumb"
-                                  width="800"
-                                  height="900"
-                                />
-                              </div>
-                              <div className="product-thumb swiper-slide">
-                                <img
-                                  src="assets/images/products/accordion/2-800x900.jpg"
-                                  alt="Product Thumb"
-                                  width="800"
-                                  height="900"
-                                />
-                              </div>
-                              <div className="product-thumb swiper-slide">
-                                <img
-                                  src="assets/images/products/accordion/3-800x900.jpg"
-                                  alt="Product Thumb"
-                                  width="800"
-                                  height="900"
-                                />
-                              </div>
-                              <div className="product-thumb swiper-slide">
-                                <img
-                                  src="assets/images/products/accordion/4-800x900.jpg"
-                                  alt="Product Thumb"
-                                  width="800"
-                                  height="900"
-                                />
+                              >
+
+                                <div className="product-thumbs swiper-wrapper row cols-4 gutter-sm">
+                                  {e.image(r=>( <div className="product-thumb swiper-slide">
+                                    <img
+                                        src="assets/images/products/accordion/1-800x900.jpg"
+                                        alt="Product Thumb"
+                                        width="800"
+                                        height="900"
+                                    />
+                                  </div>))}
+                                </div>
+                                <button className="swiper-button-next"></button>
+                                <button className="swiper-button-prev"></button>
                               </div>
                             </div>
-                            <button className="swiper-button-next"></button>
-                            <button className="swiper-button-prev"></button>
-                          </div>
-                        </div>
+                        ))}
+
                       </div>
                       <div className="col-md-6 mb-6 mb-md-8">
                         <MainForProductDetails />
