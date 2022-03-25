@@ -19,7 +19,6 @@ const MainForHome = (props) => {
 
   useEffect(() => {
     sliders().then((items) => {
-      console.log(items.data,"fffff");
       setOptionsData(items.data);
     });
   }, []);
