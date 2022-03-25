@@ -44,57 +44,33 @@ const MainForHome = (props) => {
     }
   }, []);
 
-  const [displayedBenefits, displayedBenefitsData] = useState([]);
+  const [displayedBenefits, setDisplayedBenefitsData] = useState([]);
   useEffect(() => {
-    if (JSON.parse(localStorage.getItem("displayedBenefits"))) {
-      displayedBenefitsData(
-        JSON.parse(localStorage.getItem("displayedBenefits"))
-      );
-    } else {
-      benefits().then((items) => {
-        localStorage.setItem("displayedBenefits", JSON.stringify(items.data));
-        JSON.parse(localStorage.getItem("displayedBenefits"))
-          ? displayedBenefitsData(
-              JSON.parse(localStorage.getItem("displayedBenefits"))
-            )
-          : [];
-      });
-    }
+    benefits().then((items) => {
+      setDisplayedBenefitsData(items.data);
+    });
   }, []);
 
-  const [allProductsTitle, allProductsData] = useState([]);
+  const [allProductsTitle, setAllProductsData] = useState([]);
   useEffect(() => {
     productFilter({}).then((items) => {
-      allProductsData(items.data.results);
+      console.log(items.data.results, "dsjkahdjkash");
+      setAllProductsData(items.data.results);
     });
   }, []);
 
   const [data2, setData2] = useState([]);
   useEffect(() => {
-    if (JSON.parse(localStorage.getItem("data2"))) {
-      setData2(JSON.parse(localStorage.getItem("data2")));
-    } else {
-      allProducts().then((items) => {
-        localStorage.setItem("data2", JSON.stringify(items.data.results));
-        JSON.parse(localStorage.getItem("data2"))
-          ? setData2(JSON.parse(localStorage.getItem("data2")))
-          : [];
-      });
-    }
+    allProducts().then((items) => {
+      setData2(items.data);
+    });
   }, []);
 
-  const [partnersTitle, partnersData] = useState([]);
+  const [partnersTitle, setPartnersData] = useState([]);
   useEffect(() => {
-    if (JSON.parse(localStorage.getItem("partnersTitle"))) {
-      partnersData(JSON.parse(localStorage.getItem("partnersTitle")));
-    } else {
-      partners().then((items) => {
-        localStorage.setItem("partnersTitle", JSON.stringify(items.data));
-        JSON.parse(localStorage.getItem("partnersTitle"))
-          ? partnersData(JSON.parse(localStorage.getItem("partnersTitle")))
-          : [];
-      });
-    }
+    partners().then((items) => {
+      setPartnersData(items.data);
+    });
   }, []);
 
   const [showMe, setShowMe] = useState("none");
