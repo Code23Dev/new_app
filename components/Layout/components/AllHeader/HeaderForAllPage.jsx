@@ -781,9 +781,7 @@ export default function HeaderForAllPage() {
           </div>
         </div>
 
-        <div
-          className="header-bottom sticky-content fix-top sticky-header"
-        >
+        <div className="header-bottom sticky-content fix-top sticky-header">
           <div className="container">
             <div className="inner-wrap">
               <div className="header-left">
@@ -820,7 +818,7 @@ export default function HeaderForAllPage() {
                             {item.title}
                             <ul
                               className="megamenu"
-                              style={{ overflowY: "hidden" }}
+                              style={{ overflowY: "scrool", height: "400px" }}
                             >
                               <li>
                                 {item.sub_categories.map((e) => (

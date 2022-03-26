@@ -999,8 +999,8 @@ export default function HeaderForHome(){
                                                 <li>
                                                     <a href="javascript:void(0)">
                                                         <img src={item.icon}/> {item.title}
-                                                        <ul className="megamenu" >
-                                                            <li>
+                                                        <ul className="megamenu" style={{height:"500px"}}>
+                                                            <li style={{overflow:"scroll"}}>
                                                                 {item.sub_categories.map(e=>(
                                                                     <div>
                                                                         <h4 className="menu-title">{e.title}</h4>
