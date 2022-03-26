@@ -45,12 +45,26 @@ const MainForHome = (props) => {
   const [displayedCategoriesTitle, setDisplayedCategoriesData] = useState([]);
 
   useEffect(() => {
-    displayedCategories().then((items) => {
-      setDisplayedCategoriesData(items.data);
-    });
+    if (localStorage.getItem("displayedCategoriesTitle")) {
+      setDisplayedCategoriesData(JSON.parse(localStorage.getItem("displayedCategoriesTitle")));
+      displayedCategories().then((items) => {
+        localStorage.setItem("displayedCategoriesTitle", JSON.stringify(items?.data));
+        JSON.parse(localStorage.getItem("displayedCategoriesTitle"))
+            ? setDisplayedCategoriesData(JSON.parse(localStorage.getItem("displayedCategoriesTitle")))
+            : [];
+      });
+    } else {
+      displayedCategories().then((items) => {
+        localStorage.setItem("displayedCategoriesTitle", JSON.stringify(items?.data));
+        JSON.parse(localStorage.getItem("displayedCategoriesTitle"))
+            ? setDisplayedCategoriesData(JSON.parse(localStorage.getItem("displayedCategoriesTitle")))
+            : [];
+      });
+    }
   }, []);
 
   const [displayedBenefits, setDisplayedBenefitsData] = useState([]);
+
   useEffect(() => {
     benefits().then((items) => {
       setDisplayedBenefitsData(items.data);
@@ -65,11 +79,25 @@ const MainForHome = (props) => {
     });
   }, []);
 
+
   const [data2, setData2] = useState([]);
   useEffect(() => {
-    vendors().then((items) => {
-      setData2(items.data.results);
-    });
+    if (localStorage.getItem("data2")) {
+      setData2(JSON.parse(localStorage.getItem("data2")));
+      vendors().then((items) => {
+        localStorage.setItem("data2", JSON.stringify(items?.data.results));
+        JSON.parse(localStorage.getItem("data2"))
+            ? setData2(JSON.parse(localStorage.getItem("data2")))
+            : [];
+      });
+    } else {
+      vendors().then((items) => {
+        localStorage.setItem("optionsTitle", JSON.stringify(items?.data.results));
+        JSON.parse(localStorage.getItem("data2"))
+            ? setData2(JSON.parse(localStorage.getItem("data2")))
+            : [];
+      });
+    }
   }, []);
 
   const [partnersTitle, setPartnersData] = useState([]);

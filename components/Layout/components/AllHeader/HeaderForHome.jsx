@@ -127,14 +127,6 @@ export default function HeaderForHome(){
     }, [])
 
 
-        // cartByUserID(userId)
-        //     .then(items => {
-        //         setCartByUserIDItem(items.data.product_version)
-        //         setCartCountItem(items.data.product_version.length)
-        //         items.data.product_version.map(c=>cardPrice+=Number(c.final_price))
-        //         setAllCardPrice(cardPrice)
-        //     })
-
     const [showMe, setShowMe] = useState("none");
     function showMeFunc(){
         if (showMe== 'none'){
@@ -145,6 +137,31 @@ export default function HeaderForHome(){
     }
 
 
+    const [forgotPassword, setForgotPassword] = useState("none");
+    function forgotPasswordFunc(){
+        if (forgotPassword== 'none'){
+            setForgotPassword("block");
+        }else{
+            setForgotPassword("none");
+        }
+    }
+    const handleForgotPasswordInput = () =>{
+        let data = {number:number,
+            password:password,
+            password2:password2,
+            is_vendor:isVendor,
+            is_store:isStore,
+        }
+        register(data)
+            .then(items => {
+                showMeFunc()
+                forgotPasswordFunc()
+            }).catch(e =>{
+            console.log(e)
+        })
+        console.log(data)
+    }
+
     function showMeNumberFunc(){
         if (showMeNumber== 'none'){
             setShowMeNumber("block");
@@ -152,6 +169,9 @@ export default function HeaderForHome(){
             setShowMeNumber("none");
         }
     }
+
+
+
     const handleRegisterInput = () =>{
         let data = {number:number,
             password:password,
@@ -230,6 +250,36 @@ export default function HeaderForHome(){
     return (
         <>
         <style jsx>{`
+                .btnColor{
+                    color: white;
+                    background-color: #0b899b;
+                    outline: 0;
+                    border-radius: 0;
+                    font-family: inherit;
+                    font-weight: 600;
+                    font-size: 1.4rem;
+                    padding: 0.93em 1.98em;
+                    line-height: 1;
+                    text-transform: uppercase;
+                    text-align: center;
+                    white-space: nowrap;
+                    cursor: pointer;
+                }
+                 .btnColor:hover{
+                        color: white;
+                        background-color: #cd2027;
+                        outline: 0;
+                        border-radius: 0;
+                        font-family: inherit;
+                        font-weight: 600;
+                        font-size: 1.4rem;
+                        padding: 0.93em 1.98em;
+                        line-height: 1;
+                        text-transform: uppercase;
+                        text-align: center;
+                        white-space: nowrap;
+                        cursor: pointer;
+                    }
                     .react-tel-input .form-control {
                         position: relative;
                         font-size: 14px;
@@ -380,11 +430,10 @@ export default function HeaderForHome(){
                                             <input type="checkbox" className="custom-checkbox" id="remember" name="remember"
                                                    required=""/>
                                             <label htmlFor="remember">Məni xatırla</label>
-                                            <a href="#">Parolu unutdunuz?</a>
+                                            <a href="#"  onClick={()=> handleForgotPasswordInput()}>Parolu unutdunuz?</a>
                                         </div>
 
-
-                                        <a href="#" className="btn btn-primary" onClick={()=> handleLoginInput()}>Daxil ol</a>
+                                        <p onClick={()=> handleLoginInput()} className="btnColor">Daxil ol</p>
                                     </div>
 
                                     <div className="tab-pane" id="sign-up">
@@ -423,7 +472,7 @@ export default function HeaderForHome(){
                                                 <label htmlFor="remember">İstifadəçilər</label>
                                             </div>
                                         </div>
-                                        <a href="#" className="btn btn-primary" onClick={handleRegisterInput}>Qeydiyyatdan keç</a>
+                                        <p onClick={handleRegisterInput} className="btnColor">Qeydiyyatdan keç</p>
                                     </div>
                                 </div>
                             </div>
@@ -478,19 +527,69 @@ export default function HeaderForHome(){
                                                    required=""/>
                                             <label htmlFor="remember">Satıcı</label>
                                         </div> */}
-                                        <a href="#" className="btn btn-primary" onClick={handleRegisterInput}>Qeydiyyatdan keç</a>
+                                        <p onClick={handleRegisterInput} className="btnColor">Qeydiyyatdan keç</p>
                                     </div>
-                                </div>
-                                <p className="text-center">Sosial hesabla qeydiyyatdan keçin</p>
-                                <div className="social-icons social-icon-border-color d-flex justify-content-center">
-                                    <a href="#" className="social-icon social-facebook w-icon-facebook"></a>
-                                    <a href="#" className="social-icon social-twitter w-icon-twitter"></a>
-                                    <a href="#" className="social-icon social-google fab fa-google"></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                {/*<div id="myModal" className="modal" style={{display:forgotPassword}}>*/}
+                {/*    <div className="modal-content">*/}
+                {/*        <span className="close" onClick={forgotPasswordFunc()}>&times;</span>*/}
+                {/*        <div className="login-popup">*/}
+                {/*            <div className="tab tab-nav-boxed tab-nav-center tab-nav-underline">*/}
+                {/*                <div className="tab-content">*/}
+                {/*                    <div className="tab-pane active" id="sign-in">*/}
+                {/*                        <div className="form-group mb-5">*/}
+                {/*                            <label>Parolu unutdunuz?</label>*/}
+                {/*                            <input type="text" onChange={e=>setNumberLogin(e.target.value)} className="form-control" name="password_1" id="password_1"*/}
+                {/*                                   required/>*/}
+                {/*                        </div>*/}
+                {/*                        <a href="#" className="btn btn-primary" onClick={()=> handleLoginInput()}>Codu daxil edin</a>*/}
+                {/*                    </div>*/}
+
+                {/*                    <div className="tab-pane" id="sign-up">*/}
+                {/*                        <div className="form-group">*/}
+                {/*                            <label>Nömrənizi daxil edin *</label>*/}
+                {/*                            <PhoneInput*/}
+                {/*                                country="az"*/}
+                {/*                                inputStyle={{width:"100%"}}*/}
+                {/*                                value={phone}*/}
+                {/*                                onChange={handleOnChange}/>*/}
+                {/*                            /!*<input type="text" onChange={e=>setNumber(e.target.value)} className="form-control" name="password_1" id="password_1"*!/*/}
+                {/*                            /!*       required/>*!/*/}
+                {/*                        </div>*/}
+                {/*                        <div className="form-group mb-5">*/}
+                {/*                            <label>Şifrənizi daxil edin *</label>*/}
+                {/*                            <input type="text" onChange={e=>setPassword(e.target.value)} className="form-control" name="password_1" id="password_1"*/}
+                {/*                                   required/>*/}
+                {/*                        </div>*/}
+                {/*                        <div className="form-group mb-5">*/}
+                {/*                            <label>Şifrəni təkrar daxil edin *</label>*/}
+                {/*                            <input type="text" onChange={e=>setPassword2(e.target.value)} className="form-control" name="password_1" id="password_1"*/}
+                {/*                                   required/>*/}
+                {/*                        </div>*/}
+                {/*                        <p>Şəxsi məlumatlarınız bu veb-saytda təcrübənizi dəstəkləmək, hesabınıza girişi idarə etmək və məxfilik siyasətimizdə təsvir olunan digər məqsədlər üçün istifadə olunacaq.</p>*/}
+
+                {/*                        <div className="form-checkbox d-flex align-items-center justify-content-between">*/}
+                {/*                            <input type="checkbox" className="custom-checkbox" id="remember2" name="remember" onChange={e=>setIsStore(e.target.checked)}*/}
+                {/*                                   required=""/>*/}
+                {/*                            <label htmlFor="remember">Mağaza</label>*/}
+                {/*                        </div>*/}
+                {/*                        /!* <div className="form-checkbox d-flex align-items-center justify-content-between">*/}
+                {/*                            <input type="checkbox" className="custom-checkbox" id="remember3" onChange={e=>setIsVendor(e.target.checked)} name="remember"*/}
+                {/*                                   required=""/>*/}
+                {/*                            <label htmlFor="remember">Satıcı</label>*/}
+                {/*                        </div> *!/*/}
+                {/*                        <p onClick={handleRegisterInput} className="btnColor">Qeydiyyatdan keç</p>*/}
+                {/*                    </div>*/}
+                {/*                </div>*/}
+                {/*            </div>*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
 
 
                 <div className="header-middle">

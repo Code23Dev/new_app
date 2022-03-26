@@ -5,12 +5,15 @@ import {phoneNumber} from "../../../../services/phoneNumber";
 import {logo} from "../../../../services/logo";
 import {urlTopForImg} from "../../../../services/apiUrl/urlTopForImg";
 import {subscribers} from "../../../../services/subscribers";
+import {socilaLinks} from "../../../../services/socilaLinks";
 
 export default function Footer(){
     const [categorieTitle, categorieData] = useState([]);
     const [subCategoriesTitle, subCategoriesData] = useState([]);
     const [phoneNumberTitle, sphoneNumberData] = useState(null);
     const [logoTitle, logoData] = useState(null);
+
+    const [socilaIconLink, setSocilaIconLink] = useState(null);
     useEffect(() => {
         allCategories()
                 .then(items => {
@@ -30,6 +33,12 @@ export default function Footer(){
                     sphoneNumberData(items.data.number)
                 }
             })
+        // socilaLinks()
+        //     .then(items => {
+        //         if (items.data) {
+        //             setSocilaIconLink(items.data)
+        //         }
+        //     })
     }, [])
 
     const [subscriberTitle, subscriberData] = useState(null);
@@ -47,6 +56,32 @@ export default function Footer(){
     return (
         <div>
             <style jsx>{`
+             .btn-primary {
+                    color: #fff;
+                    border-color: #0b899b;
+                    background-color: #0b899b;
+                }
+                .btn {
+                    display: inline-block;
+                    border: 2px solid #ccc;
+                    background-color: #fff;
+                    color: #666;
+                    outline: 0;
+                    border-radius: 0;
+                    font-family: inherit;
+                    font-weight: 600;
+                    font-size: 1.4rem;
+                    padding: 0.93em 1.98em;
+                    line-height: 1;
+                    text-transform: uppercase;
+                    text-align: center;
+                    -webkit-transition: color 0.3s, border-color 0.3s, background-color 0.3s, -webkit-box-shadow 0.3s;
+                    transition: color 0.3s, border-color 0.3s, background-color 0.3s, -webkit-box-shadow 0.3s;
+                    transition: color 0.3s, border-color 0.3s, background-color 0.3s, box-shadow 0.3s;
+                    transition: color 0.3s, border-color 0.3s, background-color 0.3s, box-shadow 0.3s, -webkit-box-shadow 0.3s;
+                    white-space: nowrap;
+                    cursor: pointer;
+                }
             .footer-bottom {
                 padding: 3.1rem 0 3rem;
                 background: #f5f5f5 !important;
