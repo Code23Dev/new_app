@@ -283,7 +283,11 @@ export default function MainForVendorStore(){
                 <main className="main">
                     <nav className="breadcrumb-nav">
                         <style jsx>{`
-
+                    .right-scroll {
+                                overflow-y: auto;
+                                height: 400px;
+                                overflow-x: hidden;
+                              }
                         .product-action .btn-product:hover {
                                          background-color: #ed711b !important;
                                          color: #fff !important;
@@ -370,7 +374,7 @@ export default function MainForVendorStore(){
                                             </div>
                                             <div className="widget widget-collapsible">
                                                 <h3 className="widget-title"><span>Bütün Kateqoriyalar</span></h3>
-                                                <ul className="widget-body filter-items item-check mt-1">
+                                                <ul className="widget-body filter-items item-check mt-1 right-scroll" style={{ overflowY: 'auto', height:' 300px',minHeight:'200px', overflowX: 'hidden'}}>
                                                     {optionsTitle.map((item, index) => (
                                                         <div  onChange={(e) => handleChangeAllCategories(e,item.id,item.title)}>
                                                             <div key={item.id} className="mt-2">
@@ -381,7 +385,7 @@ export default function MainForVendorStore(){
                                                                     checked={item.isChecked}
                                                                     id={`options` + item.id}
                                                                 />
-                                                                <label htmlFor={`options` + item.id} className="ml-2" style={{position:"relative", top:'-5px',cursor:"pointer"}}>{item.title}</label>
+                                                                <label htmlFor={`options` + item.id} className="ml-2" style={{ overflowY: 'auto', height:' 300px',minHeight:'200px', overflowX: 'hidden'}}>{item.title}</label>
                                                                 <br />
                                                             </div>
                                                         </div>
@@ -390,7 +394,7 @@ export default function MainForVendorStore(){
                                             </div>
                                             <div className="widget widget-collapsible">
                                                 <h3 className="widget-title"><span>Alt Kateqoriyalar</span></h3>
-                                                <ul className="widget-body filter-items item-check mt-1">
+                                                <ul className="widget-body filter-items item-check mt-1" style={{ overflowY: 'auto', height:' 300px',minHeight:'200px', overflowX: 'hidden'}}>
                                                     {subCategoriesTitle.map((item, index) => (
                                                         <div  onChange={(e) => handleChangeSubCategories(e,item.id,item.title)}>
                                                             <div key={item.id} className="mt-2">
@@ -410,7 +414,7 @@ export default function MainForVendorStore(){
                                             </div>
                                             <div className="widget widget-collapsible">
                                                 <h3 className="widget-title"><span>Sub Kateqoriyalar</span></h3>
-                                                <ul className="widget-body filter-items item-check mt-1">
+                                                <ul className="widget-body filter-items item-check mt-1" style={{ overflowY: 'auto', height:' 400px', overflowX: 'hidden'}}>
                                                     {subSubCategoriesTitle.map((item, index) => (
                                                         <div  onChange={(e) => handleChangeSubSubCategories(e,item.id,item.title)}>
                                                             <div key={item.id} className="mt-2">

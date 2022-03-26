@@ -153,85 +153,179 @@ export default function MainForShop(){
     //     });
     //     filtersBySubsubData(modifiedData);
     // }
-
+    const [checkedData, setCheckedData] = useState(false);
+    const [checkedData1, setCheckedData1] = useState(false);
+    const [checkedData2, setCheckedData2] = useState(false);
     const handleChangeSubCategories = (e,id,title) =>{
         let data = {'sub_category': title}
-        productFilter(data)
-            .then((e)=>{
-                let sizeData =[]
-                for (let i=0;i<= e.data.count;i++){
-                    if (i%12==0){
-                        sizeData.push({size:12})
+        if (checkedData1 == false){
+            setCheckedData1(true)
+            productFilter(data)
+                .then((e)=>{
+                    let sizeData =[]
+                    for (let i=0;i<= e.data.count;i++){
+                        if (i%12==0){
+                            sizeData.push({size:12})
+                        }
                     }
-                }
-                setSizeAllData(sizeData)
-                setCount(e.data.count)
-                allProductsData(e.data.results)
-            })
-        subBySubsub(id)
-            .then((item)=>{
-                subSubCategoriesData(item.data)
-            })
-        let value = null
-        if( e == "CleanAll" ){
-            value = null
-        } else {
-            value = e.target.value;
+                    setSizeAllData(sizeData)
+                    setCount(e.data.count)
+                    allProductsData(e.data.results)
+                })
+            subBySubsub(id)
+                .then((item)=>{
+                    subCategoriesData(item.data)
+                })
+            let value = null
+            if( e == "CleanAll" ){
+                value = null
+            } else {
+                value = e.target.value;
+            }
+            const modifiedData = [...optionsTitle];
+            modifiedData.map((item) => {
+                item.isChecked = item.id === +value;
+                return item;
+            });
+            optionsData(modifiedData);
+
+            console.log(modifiedData)
         }
-        const modifiedData = [...subCategoriesTitle];
-        modifiedData.map((item) => {
-            item.isChecked = item.id === +value;
-            return item;
-        });
-        subCategoriesData(modifiedData);
+        else {
+            setCheckedData1(false)
+            productFilter({})
+                .then((e)=>{
+                    let sizeData =[]
+                    for (let i=0;i<= e.data.count;i++){
+                        if (i%12==0){
+                            sizeData.push({size:12})
+                        }
+                    }
+                    setSizeAllData(sizeData)
+                    setCount(e.data.count)
+                    allProductsData(e.data.results)
+                })
+            subBySubsub()
+                .then((item)=>{
+                    subCategoriesData(item.data)
+                })
+            let value = null
+            if( e == "CleanAll" ){
+                value = null
+            } else {
+                value = e.target.value;
+            }
+            const modifiedData = [...optionsTitle];
+            modifiedData.map((item) => {
+                item.isChecked = item.id === +value;
+                return item;
+            });
+            optionsData(modifiedData);
+        }
     }
+
 
     const handleChangeAllCategories = (e,id,title) => {
         let data = {'category': title}
-        productFilter(data)
-            .then((e)=>{
-                let sizeData =[]
-                for (let i=0;i<= e.data.count;i++){
-                    if (i%12==0){
-                        sizeData.push({size:12})
+        if (checkedData2 == false){
+            setCheckedData2(true)
+            productFilter(data)
+                .then((e)=>{
+                    let sizeData =[]
+                    for (let i=0;i<= e.data.count;i++){
+                        if (i%12==0){
+                            sizeData.push({size:12})
+                        }
                     }
-                }
-                setSizeAllData(sizeData)
-                setCount(e.data.count)
-                allProductsData(e.data.results)
-            })
-        subByCategory(id)
-            .then((item)=>{
-                subCategoriesData(item.data)
-            })
-        let value = null
-        if( e == "CleanAll" ){
-            value = null
-        } else {
-            value = e.target.value;
+                    setSizeAllData(sizeData)
+                    setCount(e.data.count)
+                    allProductsData(e.data.results)
+                })
+            subByCategory(id)
+                .then((item)=>{
+                    subCategoriesData(item.data)
+                })
+            let value = null
+            if( e == "CleanAll" ){
+                value = null
+            } else {
+                value = e.target.value;
+            }
+            const modifiedData = [...optionsTitle];
+            modifiedData.map((item) => {
+                item.isChecked = item.id === +value;
+                return item;
+            });
+            optionsData(modifiedData);
+
+            console.log(modifiedData)
         }
-        const modifiedData = [...optionsTitle];
-        modifiedData.map((item) => {
-            item.isChecked = item.id === +value;
-            return item;
-        });
-        optionsData(modifiedData);
+        else {
+            setCheckedData(false)
+            productFilter({})
+                .then((e)=>{
+                    let sizeData =[]
+                    for (let i=0;i<= e.data.count;i++){
+                        if (i%12==0){
+                            sizeData.push({size:12})
+                        }
+                    }
+                    setSizeAllData(sizeData)
+                    setCount(e.data.count)
+                    allProductsData(e.data.results)
+                })
+            subCategories()
+                .then((item)=>{
+                    subCategoriesData(item.data)
+                })
+            let value = null
+            if( e == "CleanAll" ){
+                value = null
+            } else {
+                value = e.target.value;
+            }
+            const modifiedData = [...optionsTitle];
+            modifiedData.map((item) => {
+                item.isChecked = item.id === +value;
+                return item;
+            });
+            optionsData(modifiedData);
+        }
+
     }
 
     function handleChangeSubSubCategories(e,id,title) {
         let data = {'sub_sub_category': title}
-        productFilter(data)
-            .then((e)=>{
-                let sizeData =[]
-                for (let i=0;i<= e.data.count;i++){
-                    if (i%12==0){
-                        sizeData.push({size:12})
+        if (checkedData == false){
+            setCheckedData(false)
+            productFilter(data)
+                .then((e)=>{
+                    let sizeData =[]
+                    for (let i=0;i<= e.data.count;i++){
+                        if (i%12==0){
+                            sizeData.push({size:12})
+                        }
                     }
-                }
-                setSizeAllData(sizeData)
-                setCount(e.data.count)
-                allProductsData(e.data.results)
-            })
+                    setSizeAllData(sizeData)
+                    setCount(e.data.count)
+                    allProductsData(e.data.results)
+                })
+        }else {
+            setCheckedData(false)
+            productFilter({})
+                .then((e)=>{
+                    let sizeData =[]
+                    for (let i=0;i<= e.data.count;i++){
+                        if (i%12==0){
+                            sizeData.push({size:12})
+                        }
+                    }
+                    setSizeAllData(sizeData)
+                    setCount(e.data.count)
+                    allProductsData(e.data.results)
+                })
+        }
+
         // const value = e.target.value;
         // const modifiedData = [...optionsTitle];
         // modifiedData.map((item) => {
@@ -340,7 +434,11 @@ export default function MainForShop(){
                 <main className="main">
                     <nav className="breadcrumb-nav">
                         <style jsx>{`
-
+                        .right-scroll {
+                                    overflow-y: auto;
+                                    height: 400px;
+                                    overflow-x: hidden;
+                                  }
                         .product-action .btn-product:hover {
                                          background-color: #ed711b !important;
                                          color: #fff !important;
@@ -358,8 +456,9 @@ export default function MainForShop(){
                         </div>
                     </nav>
 
-                    <div className="page-content">
+                    <div className="page-content"  >
                         <div className="container">
+                            <div style={{height:"250px"}}>
                             {categoryBannerData.map(e=>(
                                 <div className="shop-default-banner banner d-flex align-items-center mb-5 br-xs" style={{backgroundImage: 'url('+e.image+')', backgroundColor: '#FFC74E'}}>
                                     <div className="banner-content">
@@ -369,7 +468,7 @@ export default function MainForShop(){
                                     </div>
                                 </div>
                             ))}
-
+                            </div>
                             <div className="shop-content row gutter-lg mb-10">
                                 <aside className="sidebar shop-sidebar sticky-sidebar-wrapper sidebar-fixed">
                                     <div className="sidebar-overlay"></div>
@@ -382,7 +481,7 @@ export default function MainForShop(){
                                             </div>
                                             <div className="widget widget-collapsible">
                                                 <h3 className="widget-title"><span>Bütün Kateqoriyalar</span></h3>
-                                                <ul className="widget-body filter-items item-check mt-1">
+                                                <ul className="widget-body filter-items item-check mt-1 right-scroll" style={{ overflowY: 'auto', height:' 200px', overflowX: 'hidden'}}>
                                                     {optionsTitle.map((item, index) => (
                                                         <div  onChange={(e) => handleChangeAllCategories(e,item.id,item.title)}>
                                                             <div key={item.id} className="mt-2">
@@ -390,8 +489,9 @@ export default function MainForShop(){
                                                                     type="checkbox"
                                                                     value={item.id}
                                                                     style={{width:' 20px', height: '24px'}}
-                                                                    checked={ urlCategoriaId === item.id ? true : item.isChecked}
+                                                                     checked={ urlCategoriaId === item.id && checkedData2 ? true && checkedData2 : item.isChecked && checkedData2}
                                                                     id={`options` + item.id}
+
                                                                 />
                                                                 <label htmlFor={`options` + item.id} className="ml-2" style={{position:"relative", top:'-5px',cursor:"pointer"}}>{item.title}</label>
                                                                 <br />
@@ -402,7 +502,7 @@ export default function MainForShop(){
                                             </div>
                                             <div className="widget widget-collapsible">
                                                 <h3 className="widget-title"><span>Alt Kateqoriyalar</span></h3>
-                                                <ul className="widget-body filter-items item-check mt-1">
+                                                <ul className="widget-body filter-items item-check mt-1 right-scroll" style={{ overflowY: 'auto', height:' 200px', overflowX: 'hidden'}}>
                                                     {subCategoriesTitle?.map((item, index) => (
                                                         <div  onChange={(e) => handleChangeSubCategories(e,item?.id,item?.title)}>
                                                             <div key={item.id} className="mt-2">
@@ -410,7 +510,7 @@ export default function MainForShop(){
                                                                     type="checkbox"
                                                                     value={item?.id}
                                                                     style={{width:' 20px', height: '24px'}}
-                                                                    checked={urlSubCategoriaId === item?.id ? true : item?.isChecked}
+                                                                    checked={ urlCategoriaId === item.id && checkedData1 ? true && checkedData1 : item.isChecked && checkedData1}
                                                                     id={`sub` + item?.id}
                                                                 />
                                                                 <label htmlFor={`sub` + item?.id} className="ml-2" style={{position:"relative", top:'-5px',cursor:"pointer"}}>{item.title}</label>
@@ -422,7 +522,7 @@ export default function MainForShop(){
                                             </div>
                                             <div className="widget widget-collapsible">
                                                 <h3 className="widget-title"><span>Sub Kateqoriyalar</span></h3>
-                                                <ul className="widget-body filter-items item-check mt-1">
+                                                <ul className="widget-body filter-items item-check mt-1 right-scroll" style={{ overflowY: 'auto', height:' 200px', overflowX: 'hidden'}}>
                                                     {subSubCategoriesTitle?.map((item, index) => (
                                                         <div  onChange={(e) => handleChangeSubSubCategories(e,item?.id,item?.title)}>
                                                             <div key={item?.id} className="mt-2">
@@ -430,7 +530,7 @@ export default function MainForShop(){
                                                                     type="checkbox"
                                                                     value={urlSubSubCategoriaId ? urlSubSubCategoriaId : item.id}
                                                                     style={{width:' 20px', height: '24px'}}
-                                                                    checked={urlSubSubCategoriaId===item?.id ? true : item?.isChecked}
+                                                                    checked={ urlCategoriaId === item.id && checkedData ? true && checkedData : item.isChecked && checkedData}
                                                                     id={`subSub` + item?.id}
                                                                 />
                                                                 <label htmlFor={`subSub` + item?.id} className="ml-2" style={{position:"relative", top:'-5px',cursor:"pointer"}}>{item.title}</label>
@@ -451,7 +551,7 @@ export default function MainForShop(){
                                             <div className="widget widget-collapsible">
                                                 <h3 className="widget-title"><span>Qiymət</span></h3>
                                                 <div className="widget-body">
-                                                    <ul className="filter-items search-ul">
+                                                    <ul className="filter-items search-ul" style={{ overflowY: 'auto', height:' 200px', overflowX: 'hidden'}}>
                                                         {filterPricesData?.map(e=>(<li><a href="javascript:void(0)" onClick={() =>sentPrice([e[0], e[1]])}>₼{e[0]} - ₼{e[1]}</a></li>))}
                                                     </ul>
                                                     <form className="price-range">

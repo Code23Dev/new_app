@@ -397,7 +397,7 @@ export default function MainForVendor() {
                     <div className="page-content mb-8">
                         <div className="container">
                             <div className="row gutter-lg">
-                                <aside style={{height:'1000px'}} className="sidebar  vendor-sidebar sticky-sidebar-wrapper left-sidebar sidebar-fixed">
+                                <aside  className="sidebar  vendor-sidebar sticky-sidebar-wrapper left-sidebar sidebar-fixed">
                                     <div className="sidebar-overlay"></div>
                                     <a className="sidebar-close" href="#"><i className="close-icon"></i></a>
                                     <a href="#" className="sidebar-toggle"><i className="fas fa-chevron-right"></i></a>

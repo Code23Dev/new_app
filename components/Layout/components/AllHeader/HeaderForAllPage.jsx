@@ -587,7 +587,7 @@ export default function HeaderForAllPage(){
                                                 {logoPost.map(item => (
                                                     <li>
                                                         <a href="#">
-                                                            <img src={item.icon}/> {item.title}
+                                                            <img src={`http://34.125.5.25${item.icon}`} width="20px" height="20px"/> {item.title}
                                                             <ul className="megamenu" >
                                                                 <li>
                                                                     {item.sub_categories.map(e=>(
