@@ -534,6 +534,7 @@ export default function HeaderForHome(){
                             </div>
                             <a className="wishlist label-down link d-xs-show" href="/wishlist">
                                 <i className="w-icon-heart"></i>
+
                                 <span className="wishlist-label d-lg-show">Bəyəndiklərim</span>
                             </a>
                             <a className="compare label-down link d-xs-show" href="/compare">

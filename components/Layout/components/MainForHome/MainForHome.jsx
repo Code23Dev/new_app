@@ -12,14 +12,14 @@ import { productFilter } from "../../../../services/productFilter";
 import { useDispatch, useSelector } from "react-redux";
 import { homeProductFilter, addToCardMain } from "../../../../store/actions";
 import { cartByUserID } from "../../../../services/card/cartByUserID";
-import {vendors} from "../../../../services/vendors/vendors";
+import { vendors } from "../../../../services/vendors/vendors";
 
 const MainForHome = (props) => {
   const [optionsTitle, setOptionsData] = useState([]);
 
   useEffect(() => {
     sliders().then((items) => {
-      console.log(items.data)
+      console.log(items.data);
       setOptionsData(items.data);
     });
   }, []);
@@ -83,6 +83,7 @@ const MainForHome = (props) => {
   }, []);
 
   const addWishlist = (id) => {
+    console.log("hello world");
     let data = { user: userId, product: id };
     addToWishlist(data)
       .then((e) => {
@@ -442,9 +443,11 @@ const MainForHome = (props) => {
 
                           <p className="text-white">{e.description} </p>
                           <a
-                            href={e.button_link} className="btn btn-white btn-outline btn-rounded btn-icon-right"
+                            href={e.button_link}
+                            className="btn btn-white btn-outline btn-rounded btn-icon-right"
                           >
-                            {e.button_text}<i className="w-icon-long-arrow-right"></i>
+                            {e.button_text}
+                            <i className="w-icon-long-arrow-right"></i>
                           </a>
                         </div>
                       </div>
@@ -528,8 +531,12 @@ const MainForHome = (props) => {
             </div>
           </div>
           <div className="container mt-1 pt-2">
-            <h2 className="title title-underline mb-4 appear-animate">Ən yeni Mağazalar</h2>
-            <div className="swiper-container swiper-theme mb-10 pb-2 appear-animate" data-swiper-options="{
+            <h2 className="title title-underline mb-4 appear-animate">
+              Ən yeni Mağazalar
+            </h2>
+            <div
+              className="swiper-container swiper-theme mb-10 pb-2 appear-animate"
+              data-swiper-options="{
                     'spaceBetween': 20,
                     'slidesPerView': 1,
                     'breakpoints': {
@@ -543,60 +550,68 @@ const MainForHome = (props) => {
                             'slidesPerView': 4
                         }
                     }
-                }">
+                }"
+            >
               <div className="swiper-wrapper row cols-lg-4 cols-md-3 cols-sm-2 cols-1">
-                {data2.map(e=>(
-                    <div className="swiper-slide vendor-widget mb-0">
-                      <div className="vendor-widget-2">
-                        <div className="vendor-details">
-                          <figure className="vendor-logo">
-                            <a href={`shop/${e.id}`}>
-                              <img src={e.main_image} alt="Vendor Logo"
-                                   width="70" height="70"/>
-                            </a>
-                          </figure>
-                          <div className="vendor-personal">
-                            <h4 className="vendor-name">
-                              <a href={`shop/${e.id}`}>{e.title}</a>
-                            </h4>
-                            {/*<span className="vendor-product-count">(27 Products)</span>*/}
-                            <div className="ratings-container">
-                              <div className="ratings-full">
-                                <span className="ratings"  style={{width: `${(18 * e.rating)+'%'}` }}></span>
-                                <span className="tooltiptext tooltip-top"></span>
-                              </div>
+                {data2.map((e) => (
+                  <div className="swiper-slide vendor-widget mb-0">
+                    <div className="vendor-widget-2">
+                      <div className="vendor-details">
+                        <figure className="vendor-logo">
+                          <a href={`shop/${e.id}`}>
+                            <img
+                              src={e.main_image}
+                              alt="Vendor Logo"
+                              width="70"
+                              height="70"
+                            />
+                          </a>
+                        </figure>
+                        <div className="vendor-personal">
+                          <h4 className="vendor-name">
+                            <a href={`shop/${e.id}`}>{e.title}</a>
+                          </h4>
+                          {/*<span className="vendor-product-count">(27 Products)</span>*/}
+                          <div className="ratings-container">
+                            <div className="ratings-full">
+                              <span
+                                className="ratings"
+                                style={{ width: `${18 * e.rating + "%"}` }}
+                              ></span>
+                              <span className="tooltiptext tooltip-top"></span>
                             </div>
-                            <span className="vendor-product-count">category</span>
                           </div>
+                          <span className="vendor-product-count">category</span>
                         </div>
-                        <div className="vendor-products row cols-3 gutter-sm">
-                          <div className="vendor-product">
-                            {/*<figure className="product-media">*/}
-                            {/*  <a href={`shop/${e.id}`}>*/}
-                            {/*    <img src={e.images[0]}*/}
-                            {/*         alt=" Product" width="100" height="113"/>*/}
-                            {/*  </a>*/}
-                            {/*</figure>*/}
-                          </div>
-                          <div className="vendor-product">
-                            {/*<figure className="product-media">*/}
-                            {/*  <a href={`shop/${e.id}`}>*/}
-                            {/*    <img src={e.images[1]}*/}
-                            {/*         alt=" Product" width="100" height="113"/>*/}
-                            {/*  </a>*/}
-                            {/*</figure>*/}
-                          </div>
-                          <div className="vendor-product">
-                            {/*<figure className="product-media">*/}
-                            {/*  <a href={`shop/${e.id}`}>*/}
-                            {/*    <img src={e.images[2]}*/}
-                            {/*         alt=" Product" width="100" height="113"/>*/}
-                            {/*  </a>*/}
-                            {/*</figure>*/}
-                          </div>
+                      </div>
+                      <div className="vendor-products row cols-3 gutter-sm">
+                        <div className="vendor-product">
+                          {/*<figure className="product-media">*/}
+                          {/*  <a href={`shop/${e.id}`}>*/}
+                          {/*    <img src={e.images[0]}*/}
+                          {/*         alt=" Product" width="100" height="113"/>*/}
+                          {/*  </a>*/}
+                          {/*</figure>*/}
+                        </div>
+                        <div className="vendor-product">
+                          {/*<figure className="product-media">*/}
+                          {/*  <a href={`shop/${e.id}`}>*/}
+                          {/*    <img src={e.images[1]}*/}
+                          {/*         alt=" Product" width="100" height="113"/>*/}
+                          {/*  </a>*/}
+                          {/*</figure>*/}
+                        </div>
+                        <div className="vendor-product">
+                          {/*<figure className="product-media">*/}
+                          {/*  <a href={`shop/${e.id}`}>*/}
+                          {/*    <img src={e.images[2]}*/}
+                          {/*         alt=" Product" width="100" height="113"/>*/}
+                          {/*  </a>*/}
+                          {/*</figure>*/}
                         </div>
                       </div>
                     </div>
+                  </div>
                 ))}
               </div>
               <div className="swiper-pagination"></div>
@@ -718,7 +733,7 @@ const MainForHome = (props) => {
                             </a>
                             <a
                               href="#"
-                              style={{color: '#cd2027'}}
+                              style={{ color: "#cd2027" }}
                               className="btn-product-icon btn-wishlist w-icon-heart"
                               onClick={() => {
                                 addWishlist(e.id);
