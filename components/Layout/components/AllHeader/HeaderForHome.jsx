@@ -534,7 +534,6 @@ export default function HeaderForHome(){
                             </div>
                             <a className="wishlist label-down link d-xs-show" href="/wishlist">
                                 <i className="w-icon-heart"></i>
-
                                 <span className="wishlist-label d-lg-show">Bəyəndiklərim</span>
                             </a>
                             <a className="compare label-down link d-xs-show" href="/compare">
@@ -594,7 +593,7 @@ export default function HeaderForHome(){
                     </div>
                 </div>
 
-                <div className="header-bottom sticky-content fix-top sticky-header has-dropdown">
+                <div className="header-bottom sticky-content fix-top sticky-header has-dropdown" style={{position:"relative"}}>
                     <div className="container">
                         <div className="inner-wrap">
                             <div className="header-left">
@@ -999,7 +998,7 @@ export default function HeaderForHome(){
                                             {logoPost.map(item => (
                                                 <li>
                                                     <a href="javascript:void(0)">
-                                                        <img src={`http://34.125.5.25${item.icon}`} width="20px" height="20px"/> {item.title}
+                                                        <img src={item.icon}/> {item.title}
                                                         <ul className="megamenu" >
                                                             <li>
                                                                 {item.sub_categories.map(e=>(
