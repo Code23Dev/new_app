@@ -10,7 +10,7 @@ import { addToCard } from "../../../../services/card/addToCard";
 import { allDiscount } from "../../../../services/discount/allDiscount";
 import { productFilter } from "../../../../services/productFilter";
 import { useDispatch, useSelector } from "react-redux";
-import { homeProductFilter, addToCardMain } from "../../../../store/actions";
+import { addToCardMain } from "../../../../store/actions";
 import { cartByUserID } from "../../../../services/card/cartByUserID";
 import { vendors } from "../../../../services/vendors/vendors";
 
@@ -18,9 +18,27 @@ const MainForHome = (props) => {
   const [optionsTitle, setOptionsData] = useState([]);
 
   useEffect(() => {
+    if (localStorage.getItem("optionsTitle")) {
+      setOptionsData(JSON.parse(localStorage.getItem("optionsTitle")));
+      sliders().then((items) => {
+        localStorage.setItem("optionsTitle", JSON.stringify(items?.data));
+        JSON.parse(localStorage.getItem("optionsTitle"))
+          ? setOptionsData(JSON.parse(localStorage.getItem("optionsTitle")))
+          : [];
+      });
+    } else {
+      sliders().then((items) => {
+        localStorage.setItem("optionsTitle", JSON.stringify(items?.data));
+        JSON.parse(localStorage.getItem("optionsTitle"))
+          ? setOptionsData(JSON.parse(localStorage.getItem("optionsTitle")))
+          : [];
+      });
+    }
+  }, []);
+
+  useEffect(() => {
     sliders().then((items) => {
-      console.log(items.data);
-      setOptionsData(items.data);
+      setOptionsData(items?.data);
     });
   }, []);
 
@@ -422,37 +440,43 @@ const MainForHome = (props) => {
                     }"
               >
                 <div className="swiper-wrapper">
-                  {optionsTitle.map((e) => (
-                    <div
-                      className="swiper-slide banner banner-fixed intro-slide intro-slide2 br-sm"
-                      style={{
-                        backgroundImage: "url(" + e.image + ")",
-                        backgroundColor: "#2e3233",
-                      }}
-                    >
-                      <div className="banner-content y-50">
+                  {optionsTitle.map(
+                    (e) => (
+                      console.log(e, "di bu"),
+                      (
                         <div
-                          className="slide-animate"
-                          data-animation-options="{
+                          className="swiper-slide banner banner-fixed intro-slide intro-slide2 br-sm"
+                          // style={{
+                          //   backgroundImage: "url(" + e.image + ")",
+                          //   backgroundColor: "#2e3233",
+                          // }}
+                        >
+                          <img src={e?.image} alt="" />
+                          <div className="banner-content y-50">
+                            <div
+                              className="slide-animate"
+                              data-animation-options="{
                                         'name': 'flipInY', 'duration': '1s'
                                     }"
-                        >
-                          <h3 className="banner-subtitle text-white text-uppercase font-weight-bold">
-                            {e.title}
-                          </h3>
+                            >
+                              <h3 className="banner-subtitle text-white text-uppercase font-weight-bold">
+                                {e.title}
+                              </h3>
 
-                          <p className="text-white">{e.description} </p>
-                          <a
-                            href={e.button_link}
-                            className="btn btn-white btn-outline btn-rounded btn-icon-right"
-                          >
-                            {e.button_text}
-                            <i className="w-icon-long-arrow-right"></i>
-                          </a>
+                              <p className="text-white">{e.description} </p>
+                              <a
+                                href={e.button_link}
+                                className="btn btn-white btn-outline btn-rounded btn-icon-right"
+                              >
+                                {e.button_text}
+                                <i className="w-icon-long-arrow-right"></i>
+                              </a>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                  ))}
+                      )
+                    )
+                  )}
                 </div>
                 <div className="swiper-pagination"></div>
               </div>
